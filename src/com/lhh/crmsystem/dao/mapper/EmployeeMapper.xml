@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lhh.crmsystem.dao.IEmployeeDao">
+
+	<!-- 定义可重用的sql语句块 -->
+	<sql id="base_col">id,username,pass,nickname,realname,jobInfoId,departmentId,phoneNo,officeTel,workStatu
+	</sql>
+	<resultMap type="Employee" id="employeeMap">
+		<id column="ID" property="id" />
+		<!-- 普通属性 -->
+		<result column="USERNAME" property="username" />
+		<result column="PASS" property="pass" />
+		<result column="NICKNAME" property="nickname" />
+		<result column="REALNAME" property="realname" />
+		<result column="PHONENO" property="phoneNo" />
+		<result column="OFFICETEL" property="officeTel" />
+		<result column="WORKSTATU" property="workStatu" />
+
+		<!-- <association property="province" select="com.oracleoaec.mybatisdemo.dao.IProvinceDao.queryById" 
+			column="PRO_ID" javaType="Province" /> -->
+
+		<!-- select 路径后记得加上根据ID来查询的方法名字 -->
+		<association property="jobInfoId" select="com.lhh.crmsystem.dao.IJobInfoDao"
+			column="JOBINFOID" javaType="JobInfo" />
+		<association property="departmentId"
+			select="com.lhh.crmsystem.dao.IDepartmentDao" column="DEPARTMENTID"
+			javaType="Department" />
+
+	</resultMap>
+
+	<!-- 新增一名员工 -->
+	<insert id="insert" parameterType="Employee">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_EMPLOYEE_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_EMPLOYEE values
+		(#{username},#{pass},#{nickname},#{realname},#{jobInfoId.id},#{departmentId.id},#{phoneNo},#{officeTel},#{workStatu})
+	</insert>
+
+	<!-- 删除员工 -->
+	<delete id="deleteById">
+		delete from T_EMPLOYEE where ID = #{id}
+	</delete>
+
+	<!-- 修改员工信息 -->
+	<update id="update" parameterType="Employee">
+		update T_EMPLOYEE set
+		USERNAME=#{username},PASS=#{pass},NICKNAME=#{nickname},REALNAME=#{realname},JOBINFOID=#{jobInfoId.id},DEPARTMENTID=#{departmentId.id},PHONENO=#{phoneNo},OFFICETEL=#{officeTel},WORKSTATU=#{workStatu}
+		where ID=#{id}
+	</update>
+
+	<!-- 使用trim标签实现set标签的功能 -->
+	<update id="updateByObj" parameterType="Employee">
+		update T_EMPLOYEE
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" username != null ">
+				USERNAME=#{username},
+			</if>
+			<if test=" pass != null ">
+				PASS=#{pass},
+			</if>
+			<if test=" nickname != null ">
+				NICKNAME=#{nickname},
+			</if>
+			<if test=" realname != null ">
+				REALNAME=#{realname},
+			</if>
+			<if test=" jobInfoId != null ">
+				JOBINFOID=#{jobInfoId.id},
+			</if>
+			<if test=" departmentId != null ">
+				DEPARTMENTID=#{departmentId.id},
+			</if>
+			<if test=" phoneNo != null ">
+				PHONENO=#{phoneNo},
+			</if>
+			<if test=" officeTel != null ">
+				OFFICETEL=#{officeTel},
+			</if>
+			<if test=" workStatu != null ">
+				WORKSTATU=#{workStatu},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+
+	<!-- **************************查找员工************************** -->
+	<!-- 通过员工的id进行查找员工 -->
+	<select id="queryById" parameterType="int" resultMap="employeeMap">
+		select *
+		from t_employee where id = #{id}
+	</select>
+
+	<!-- 通过员工的账号和密码进行查找员工 -->
+	<select id="queryByUsernameAndPass" resultMap="employeeMap">
+		select
+		<include refid="base_col" />
+		from T_EMPLOYEE
+		where username=#{0}
+		and
+		pass=#{1}
+	</select>
+
+	<!-- 动态查询 -->
+	<select id="queryByObj" resultMap="employeeMap" parameterType="Employee">
+		select * from T_EMPLOYEE
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test=" id != 0">
+				and ID = #{id}
+			</if>
+			<if test=" username != null ">
+				and USERNAME = #{username}
+			</if>
+			<if test=" pass != null ">
+				and PASS = #{pass}
+			</if>
+			<if test=" nickname != null ">
+				and NICKNAME = #{nickname}
+			</if>
+			<if test=" realname != null ">
+				and REALNAME = #{realname}
+			</if>
+			<if test=" jobInfoId != null ">
+				and JOBINFOID = #{jobInfoId.id}
+			</if>
+			<if test=" departmentId != null ">
+				and DEPARTMENTID = #{departmentId.id}
+			</if>
+			<if test=" phoneNo != null ">
+				and PHONENO = #{phoneNo}
+			</if>
+			<if test=" officeTel != null ">
+				and OFFICETEL = #{officeTel}
+			</if>
+			<if test=" workStatu != null ">
+				and WORKSTATU = #{workStatu}
+			</if>
+		</trim>
+	</select>
+</mapper>
