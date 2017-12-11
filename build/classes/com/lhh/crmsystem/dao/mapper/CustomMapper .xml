@@ -101,4 +101,9 @@
 		</trim>
 	</select>
 
+	<!-- 查询全客户的信息 -->
+	<select id="queryByAll" resultMap="customMap">
+		select * from T_COSTOM
+	</select>
+
 </mapper>
