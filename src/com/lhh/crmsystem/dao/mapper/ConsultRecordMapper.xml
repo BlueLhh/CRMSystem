@@ -5,8 +5,7 @@
 	<resultMap type="ConsultRecord" id="consultRecordMap">
 		<id column="ID" property="id" />
 		<result column="CONSULTSTATU" property="consultStatu" />
-		<result column="CONSULTDATE" jdbcType="date" property="consultDate"
-			javaType="java.util.Date" />
+		<result column="CONSULTDATE" property="consultDate" />
 		<result column="RESULT" property="result" />
 
 		<association property="customId"
@@ -25,7 +24,7 @@
 			select T_CONSULTRECORD_ID_SEQ.nextval from dual
 		</selectKey>
 		insert into T_CONSULTRECORD values
-		(#{customId.id},#{consultManId.id},#{consultStatu},#{consultDate,jdbcType=DATE},#{result})
+		(#{customId.id},#{consultManId.id},#{consultStatu},#{consultDate},#{result})
 	</insert>
 
 	<!-- 删除 -->
@@ -47,7 +46,7 @@
 				CONSULTSTATU = #{consultStatu},
 			</if>
 			<if test=" consultDate != null ">
-				CONSULTDATE = #{CONSULTDATE,jdbcType=DATE},
+				CONSULTDATE = #{CONSULTDATE},
 			</if>
 			<if test=" result != null ">
 				RESULT = #{result},

@@ -4,6 +4,17 @@
 	<resultMap type="Department" id="departmentMap">
 		<id column="ID" property="id" />
 		<result column="DNAME" property="dname" />
+
+		<!-- 一对多关系，一个部门可以有多名员工 -->
+		<collection property="empList"
+			select="com.lhh.crmsystem.dao.IEmployeeDao.queryById" ofType=""
+			javaType="java.util.List" column="ID" />
+
+		<!-- 一对多关系，一个部门可以有多个职位 -->
+		<collection property="jobList"
+			select="com.lhh.crmsystem.dao.IJobInfoDao.queryById" ofType="JobInfo"
+			javaType="java.util.List" column="ID" />
+
 	</resultMap>
 
 	<!-- 新增一条部门信息 -->

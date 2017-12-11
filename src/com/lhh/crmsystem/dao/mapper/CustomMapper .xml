@@ -12,9 +12,18 @@
 		<result column="EMAIL" property="email" />
 		<result column="CUSTOMSTATU" property="customStatu" />
 		<!-- 时间类型，在拿出的时候记得写上时间的类型 -->
-		<result column="CREATEDATE" jdbcType="date" property="createDate"
-			javaType="java.util.Date" />
+		<result column="CREATEDATE" property="createDate" />
 		<result column="INVITENAME" property="inviteName" />
+
+		<!-- 一对多关系，通过ID追踪所有关联，并放在集合中 -->
+		<collection property="conList"
+			select="com.lhh.crmsystem.dao.IConsultRecordDao.queryById" ofType="ConsultRecord"
+			javaType="java.util.List" column="ID" />
+
+		<!-- 一对多关系，通过ID查找跟踪信息 -->
+		<collection property="cusList"
+			select="com.lhh.crmsystem.dao.ICustomInfoDao.queryById" ofType="CustomInfo"
+			javaType="java.util.List" column="ID" />
 	</resultMap>
 
 	<!-- 新增一名客户 -->
@@ -24,7 +33,7 @@
 			select T_CUSTOM_ID_SEQ.nextval from dual
 		</selectKey>
 		insert into T_CUSTOM values
-		(#{name},#{education},#{phoneNo},#{qq},#{email},#{customStatu},#{createDate,jdbcType=DATE},#{inviteName})
+		(#{name},#{education},#{phoneNo},#{qq},#{email},#{customStatu},#{createDate},#{inviteName})
 	</insert>
 
 	<!-- 删除一名客户 -->
@@ -55,7 +64,7 @@
 				CUSTOMSTATU = #{customStatu},
 			</if>
 			<if test=" createDate != null ">
-				CREATEDATE = #{createDate,jdbcType=DATE},
+				CREATEDATE = #{createDate},
 			</if>
 			<if test=" inviteName != null ">
 				INVITENAME = #{inviteName},
@@ -71,7 +80,7 @@
 	</select>
 
 	<!-- 动态查询 -->
-	<select id="queryByObj" parameterType="Custom">
+	<select id="queryByObj" resultMap="customMap">
 		select * from T_COSTOM
 		<trim prefix="where" prefixOverrides="and | or">
 			<if test=" name != null ">
@@ -93,7 +102,7 @@
 				and CUSTOMSTATU = #{customStatu}
 			</if>
 			<if test=" createDate != null ">
-				and CREATEDATE = #{createDate,jdbcType=DATE}
+				and CREATEDATE = #{createDate}
 			</if>
 			<if test=" inviteName != null ">
 				and INVITENAME = #{inviteName}

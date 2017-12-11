@@ -5,12 +5,9 @@
 	<resultMap type="CustomInfo" id="customInfoMap">
 		<id column="ID" property="id" />
 		<result column="STATU" property="statu" />
-		<result column="STARTDATE" jdbcType="date" property="startDate"
-			javaType="java.util.Date" />
-		<result column="LASTFOLLOWDATE" jdbcType="date" property="lastFollowDate"
-			javaType="java.util.Date" />
-		<result column="PLANDATE" jdbcType="date" property="planDate"
-			javaType="java.util.Date" />
+		<result column="STARTDATE" property="startDate" />
+		<result column="LASTFOLLOWDATE" property="lastFollowDate" />
+		<result column="PLANDATE" property="planDate" />
 		<result column="MARK" property="mark" />
 
 		<association property="customId"
@@ -28,7 +25,7 @@
 			select T_CUSTOMINFO_ID_SEQ.nextval from dual
 		</selectKey>
 		insert into T_CUSTOMINFO values
-		(#{customId.id},#{followManId.id},#{statu},#{startDate,jdbcType=DATE},#{lastFollowDate,jdbcType=DATE},#{planDate,jdbcType=DATE},#{mark})
+		(#{customId.id},#{followManId.id},#{statu},#{startDate},#{lastFollowDate},#{planDate},#{mark})
 	</insert>
 
 	<!-- 删除 -->
@@ -50,13 +47,13 @@
 				STATU = #{statu},
 			</if>
 			<if test=" startDate != null ">
-				STARTDATE = #{startDate,jdbcType=DATE},
+				STARTDATE = #{startDate},
 			</if>
 			<if test=" lastFollowDate != null ">
-				LASTFOLLOWDATE = #{lastFollowDate,jdbcType=DATE},
+				LASTFOLLOWDATE = #{lastFollowDate},
 			</if>
 			<if test=" planDate != null ">
-				PLANDATE = #{planDate,jdbcType=DATE},
+				PLANDATE = #{planDate},
 			</if>
 			<if test=" mark != null ">
 				MARK = #{mark},

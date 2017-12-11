@@ -10,6 +10,14 @@
 		<association property="pid"
 			select="com.lhh.crmsystem.dao.IRightsDao.queryById" column="PID"
 			javaType="Rights" />
+
+		<!-- 一个权限可以多个职位共同拥有 -->
+		<collection property="jobrList"
+			select="com.lhh.crmsystem.dao.IJobRightDao.queryById" ofType="JobRight"
+			javaType="java.util.List" column="ID" />
+		<collection property="pid"
+			select="com.lhh.crmsystem.dao.IRightsDao.queryById" ofType="Rights"
+			javaType="java.util.List" column="RID" />
 	</resultMap>
 
 	<!-- 插入数据 -->
@@ -48,13 +56,13 @@
 	</update>
 
 	<!-- 查询 -->
-	<select id="queryById" parameterMap="rightsMap">
+	<select id="queryById" resultMap="rightsMap">
 		select * from T_RIGHTS where
 		RID = #{rid}
 	</select>
 
 	<!-- 查询全部 -->
-	<select id="queryByAll" parameterMap="rightsMap">
+	<select id="queryByAll" resultMap="rightsMap">
 		select * from T_RIGHTS
 	</select>
 

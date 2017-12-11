@@ -16,9 +16,6 @@
 		<result column="OFFICETEL" property="officeTel" />
 		<result column="WORKSTATU" property="workStatu" />
 
-		<!-- <association property="province" select="com.oracleoaec.mybatisdemo.dao.IProvinceDao.queryById" 
-			column="PRO_ID" javaType="Province" /> -->
-
 		<!-- select 路径后记得加上根据ID来查询的方法 -->
 		<association property="jobInfoId"
 			select="com.lhh.crmsystem.dao.IJobInfoDao.queryById" column="JOBINFOID"
@@ -26,6 +23,15 @@
 		<association property="departmentId"
 			select="com.lhh.crmsystem.dao.IDepartmentDao.queryById" column="DEPARTMENTID"
 			javaType="Department" />
+
+		<!-- 一个员工可以有多个客户，可以有多条跟踪信息单 -->
+		<collection property="conList"
+			select="com.lhh.crmsystem.dao.IConsultRecordDao.queryById" ofType="ConsultRecord"
+			javaType="java.util.List" column="ID" />
+		<!-- 一对多关系。一个员工可以有多个销售单 -->
+		<collection property="cusList"
+			select="com.lhh.crmsystem.dao.ICustomInfoDao.queryById" ofType="CustomInfo"
+			javaType="java.util.List" column="ID" />
 
 	</resultMap>
 

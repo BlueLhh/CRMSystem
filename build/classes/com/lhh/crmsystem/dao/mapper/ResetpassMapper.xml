@@ -37,13 +37,13 @@
 	</update>
 
 	<!-- 查询 -->
-	<select id="queryById" parameterMap="resetpassMap">
+	<select id="queryById" resultMap="resetpassMap">
 		select * from T_RESETPASS
 		where ID = #{id}
 	</select>
 
 	<!-- 查询全部 -->
-	<select id="queryByObj" parameterMap="resetpassMap">
+	<select id="queryByObj" resultMap="resetpassMap">
 		select * from T_RESETPASS
 	</select>
 

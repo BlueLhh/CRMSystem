@@ -18,7 +18,7 @@
 			resultType="java.lang.Integer">
 			select T_JOBRIGHT_ID_SEQ.nextval from dual
 		</selectKey>
-		insert into T_JOBRIGHT values (#{jobInfoId.id},#{rightsId.id})
+		insert into T_JOBRIGHT values (#{jobInfoId.id},#{rightsId.rid})
 	</insert>
 
 	<!-- 删除数据 -->
@@ -34,20 +34,20 @@
 				JOBINFOID = #{jobInfoId.id},
 			</if>
 			<if test=" rightsId != null ">
-				RIGHTSID = #{rightsId.id},
+				RIGHTSID = #{rightsId.rid},
 			</if>
 		</trim>
 		where ID = #{id}
 	</update>
 
 	<!-- 查詢 -->
-	<select id="queryById" parameterMap="jobRightMap">
+	<select id="queryById" resultMap="jobRightMap">
 		select * from T_JOBRIGHT
 		where ID = #{id}
 	</select>
 
 	<!-- 查询全部信息 -->
-	<select id="queryByAll" parameterMap="jobRightMap">
+	<select id="queryByAll" resultMap="jobRightMap">
 		select * from T_JOBRIGHT
 	</select>
 

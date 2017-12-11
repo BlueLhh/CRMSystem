@@ -10,6 +10,15 @@
 			select="com.lhh.crmsystem.dao.IDepartmentDao.queryById" column="departmentId"
 			javaType="Department" />
 
+		<!-- 一个职位可以有多名员工 -->
+		<collection property="empList"
+			select="com.lhh.crmsystem.dao.IEmployeeDao.queryById" ofType="Employee"
+			javaType="java.util.List" column="ID" />
+		<!-- 一个职位可以有个权限 -->
+		<collection property="jobrList"
+			select="com.lhh.crmsystem.dao.IJobRightDao.queryById" ofType="JobRight"
+			javaType="java.util.List" column="ID" />
+
 	</resultMap>
 
 	<!-- 新增职位信息 -->
@@ -42,7 +51,8 @@
 
 	<!-- **********查询职位信息********* -->
 	<select id="queryById" resultMap="jobInfoMap">
-		select * from T_JOBINFO where ID = #{id}
+		select * from T_JOBINFO where
+		ID = #{id}
 	</select>
 
 	<select id="queryByAll" resultMap="jobInfoMap">
