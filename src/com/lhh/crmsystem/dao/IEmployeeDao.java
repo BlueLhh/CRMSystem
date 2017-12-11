@@ -1,5 +1,7 @@
 package com.lhh.crmsystem.dao;
 
+import java.util.List;
+
 import com.lhh.crmsystem.entity.Employee;
 
 public interface IEmployeeDao {
@@ -33,7 +35,7 @@ public interface IEmployeeDao {
 	 * @param employee
 	 * @return
 	 */
-	public int updateByObj(Employee employee);
+	public Employee updateByObj(Employee employee);
 
 	/******* 查询 ********/
 	/**
@@ -60,4 +62,11 @@ public interface IEmployeeDao {
 	 * @return
 	 */
 	public Employee queryByObj(Employee employee);
+
+	/**
+	 * 查询员工的全部信息
+	 * 
+	 * @return
+	 */
+	public List<Employee> queryByAll();
 }
