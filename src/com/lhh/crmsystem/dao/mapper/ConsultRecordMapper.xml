@@ -2,8 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.IConsultRecordDao">
 
-	
-	
-	
-	
+	<resultMap type="ConsultRecord" id="consultRecordMap">
+		<id column="ID" property="id" />
+		<result column="CONSULTSTATU" property="consultStatu" />
+		<result column="CONSULTDATE" jdbcType="date" property="consultDate"
+			javaType="java.util.Date" />
+		<result column="RESULT" property="result" />
+
+		<association property="customId"
+			select="com.lhh.crmsystem.dao.ICustomDao.queryById" column="CUSTOMID"
+			javaType="Custom" />
+
+		<association property="consultManId"
+			select="com.lhh.crmsystem.dao.IEmployeeDao.queryById" column="CONSULTMANID"
+			javaType="Employee" />
+	</resultMap>
+
+	<!-- 新增一条信息 -->
+	<insert id="insert" parameterType="ConsultRecord">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_CONSULTRECORD_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_CONSULTRECORD values
+		(#{customId.id},#{consultManId.id},#{consultStatu},#{consultDate,jdbcType=DATE},#{result})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteById">
+		delete from T_CONSULTRECORD where ID = #{id}
+	</delete>
+
+	<!-- 修改 -->
+	<update id="updateByObj" parameterType="ConsultRecord">
+		update T_CONSULTRECORD
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" customId != null ">
+				CUSTOMID = #{customId.id},
+			</if>
+			<if test=" consultManId != null ">
+				CONSULTMANID = #{consultManId.id},
+			</if>
+			<if test=" consultStatu != null ">
+				CONSULTSTATU = #{consultStatu},
+			</if>
+			<if test=" consultDate != null ">
+				CONSULTDATE = #{CONSULTDATE,jdbcType=DATE},
+			</if>
+			<if test=" result != null ">
+				RESULT = #{result},
+			</if>
+		</trim>
+		where ID = #{id}
+	</update>
+
+	<!-- ******查询****** -->
+	<select id="queryById" resultMap="consultRecordMap">
+		select * from T_CONSULTRECORD
+		where ID = #{id}
+	</select>
+
+	<select id="queryByAll" resultMap="consultRecordMap">
+		select * from T_CONSULTRECORD
+	</select>
+
 </mapper>
