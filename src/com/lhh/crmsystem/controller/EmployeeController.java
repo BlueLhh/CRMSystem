@@ -52,4 +52,15 @@ public class EmployeeController {
 			return "/login.jsp";
 		}
 	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		if (session != null) {
+			session.invalidate();
+		}
+		return "/login.jsp";
+	}
+
 }

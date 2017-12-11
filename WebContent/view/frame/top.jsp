@@ -148,7 +148,7 @@ a {
 																	</td>
 																	<td width="50">
 																		<div align="center">
-																			<a href="<%=basePath%>login.jsp" target="_parent"><img
+																			<a href="<%=basePath%>employee/logout.do" target="_parent"><img
 																					src="<%=basePath%>resource/images/main_20.gif"
 																					width="48" height="19">
 																			</a>
