@@ -13,13 +13,10 @@ public class Rights {
 	private String rightName;// 权限名称
 	private String rightType;// 权限级别
 	private String url;// 选项卡URL值
-	private int pid;// 类别编号
+	private Rights pid;// 类别编号
 
 	// 多个职位人员可以拥有同一个权限
 	private List<JobRight> jobrList;
-
-	/************ 自关联 *************/
-	private Rights rights;
 
 	private List<Rights> rigList;
 
@@ -27,7 +24,7 @@ public class Rights {
 		super();
 	}
 
-	public Rights(int rid, String rightName, String rightType, String url, int pid) {
+	public Rights(int rid, String rightName, String rightType, String url, Rights pid) {
 		super();
 		this.rid = rid;
 		this.rightName = rightName;
@@ -68,11 +65,11 @@ public class Rights {
 		this.url = url;
 	}
 
-	public int getPid() {
+	public Rights getPid() {
 		return pid;
 	}
 
-	public void setPid(int pid) {
+	public void setPid(Rights pid) {
 		this.pid = pid;
 	}
 
@@ -82,14 +79,6 @@ public class Rights {
 
 	public void setJobrList(List<JobRight> jobrList) {
 		this.jobrList = jobrList;
-	}
-
-	public Rights getRights() {
-		return rights;
-	}
-
-	public void setRights(Rights rights) {
-		this.rights = rights;
 	}
 
 	public List<Rights> getRigList() {
