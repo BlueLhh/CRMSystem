@@ -2,8 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.ICustomInfoDao">
 
-	
-	
-	
-	
+	<resultMap type="CustomInfo" id="customInfoMap">
+		<id column="ID" property="id" />
+		<result column="STATU" property="statu" />
+		<result column="STARTDATE" jdbcType="date" property="startDate"
+			javaType="java.util.Date" />
+		<result column="LASTFOLLOWDATE" jdbcType="date" property="lastFollowDate"
+			javaType="java.util.Date" />
+		<result column="PLANDATE" jdbcType="date" property="planDate"
+			javaType="java.util.Date" />
+		<result column="MARK" property="mark" />
+
+		<association property="customId"
+			select="com.lhh.crmsystem.dao.ICustomDao.queryById" column="CUSTOMID"
+			javaType="Custom" />
+		<association property="followManId"
+			select="com.lhh.crmsystem.dao.IEmployeeDao.queryById" column="FOLLOWMANID"
+			javaType="Employee" />
+	</resultMap>
+
+	<!-- 新增一条信息 -->
+	<insert id="insert" parameterType="CustomInfo">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_CUSTOMINFO_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_CUSTOMINFO values
+		(#{customId.id},#{followManId.id},#{statu},#{startDate,jdbcType=DATE},#{lastFollowDate,jdbcType=DATE},#{planDate,jdbcType=DATE},#{mark})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteById">
+		delete from T_CUSTOMINFO where ID = #{id}
+	</delete>
+
+	<!-- 更新信息 -->
+	<update id="updateByObj" parameterType="CustomInfo">
+		update T_CUSTOMINFO
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" customId != null ">
+				CUSTOMID = #{customId.id},
+			</if>
+			<if test=" followManId != null ">
+				FOLLOWMANID = #{followManId.id},
+			</if>
+			<if test=" statu != null ">
+				STATU = #{statu},
+			</if>
+			<if test=" startDate != null ">
+				STARTDATE = #{startDate,jdbcType=DATE},
+			</if>
+			<if test=" lastFollowDate != null ">
+				LASTFOLLOWDATE = #{lastFollowDate,jdbcType=DATE},
+			</if>
+			<if test=" planDate != null ">
+				PLANDATE = #{planDate,jdbcType=DATE},
+			</if>
+			<if test=" mark != null ">
+				MARK = #{mark},
+			</if>
+		</trim>
+		where ID = #{id}
+	</update>
+
+	<!-- 查 -->
+	<select id="queryById" resultMap="customInfoMap">
+		select * from T_CUSTOMINFO
+		where ID = #{id}
+	</select>
+
+	<!-- 查询全部 -->
+	<select id="queryByObj" resultMap="customInfoMap">
+		select * from T_CUSTOMINFO
+	</select>
+
 </mapper>
