@@ -2,8 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.IJobRightDao">
 
-	
-	
-	
-	
+	<resultMap type="JobRight" id="jobRightMap">
+		<id column="ID" property="id" />
+		<association property="jobInfoId"
+			select="com.lhh.crmsystem.dao.IJobInfoDao.queryById" column="JOBINFOID"
+			javaType="JobInfo" />
+		<association property="rightsId"
+			select="com.lhh.crmsystem.dao.IRightsDao.queryById" column="RIGHTSID"
+			javaType="Rights" />
+	</resultMap>
+
+	<!-- 插入数据 -->
+	<insert id="insert" parameterType="JobRight">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_JOBRIGHT_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_JOBRIGHT values (#{jobInfoId.id},#{rightsId.id})
+	</insert>
+
+	<!-- 删除数据 -->
+	<delete id="deleteById">
+		delete from T_JOBRIGHT where ID = #{id}
+	</delete>
+
+	<!-- 更改数据 -->
+	<update id="updateByObj" parameterType="JobRight">
+		update T_JOBRIGHT
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" jobInfoId != null ">
+				JOBINFOID = #{jobInfoId.id},
+			</if>
+			<if test=" rightsId != null ">
+				RIGHTSID = #{rightsId.id},
+			</if>
+		</trim>
+		where ID = #{id}
+	</update>
+
+	<!-- 查詢 -->
+	<select id="queryById" parameterMap="jobRightMap">
+		select * from T_JOBRIGHT
+		where ID = #{id}
+	</select>
+
+	<!-- 查询全部信息 -->
+	<select id="queryByAll" parameterMap="jobRightMap">
+		select * from T_JOBRIGHT
+	</select>
+
 </mapper>
