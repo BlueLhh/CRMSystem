@@ -2,8 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.IResetpassDao">
 
-	
-	
-	
-	
+	<resultMap type="Resetpass" id="resetpassMap">
+		<id column="ID" property="id" />
+		<result column="USERNAME" property="username" />
+		<result column="PHONENO" property="phoneNo" />
+	</resultMap>
+
+	<!-- 插入数据 -->
+	<insert id="insert" parameterType="Resetpass">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_RESETPASS_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_RESETPASS values (#{username},#{phoneNo})
+	</insert>
+
+	<!-- 删除数据 -->
+	<delete id="deleteById">
+		delete from T_RESETPASS where ID = #{id}
+	</delete>
+
+	<!-- 修改信息 -->
+	<update id="updateByObj" parameterType="Resetpass">
+		update T_RESETPASS
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" username != null ">
+				USERNAME = #{username},
+			</if>
+			<if test=" phoneNo != null ">
+				PHONENO = #{phoneNo},
+			</if>
+		</trim>
+		where ID = #{id}
+	</update>
+
+	<!-- 查询 -->
+	<select id="queryById" parameterMap="resetpassMap">
+		select * from T_RESETPASS
+		where ID = #{id}
+	</select>
+
+	<!-- 查询全部 -->
+	<select id="queryByObj" parameterMap="resetpassMap">
+		select * from T_RESETPASS
+	</select>
+
 </mapper>
