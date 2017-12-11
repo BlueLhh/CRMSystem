@@ -1,7 +1,5 @@
 package com.lhh.crmsystem.dao;
 
-import java.util.List;
-
 import com.lhh.crmsystem.entity.Custom;
 
 public interface ICustomDao {
@@ -45,12 +43,5 @@ public interface ICustomDao {
 	 * @return
 	 */
 	public Custom queryByObj(Custom custom);
-
-	/**
-	 * 查询全部客户的信息
-	 * 
-	 * @return
-	 */
-	public List<Custom> queryByAll();
 
 }

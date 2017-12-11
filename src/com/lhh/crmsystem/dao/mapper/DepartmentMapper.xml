@@ -1,43 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.IDepartmentDao">
-	<resultMap type="Department" id="departmentMap">
-		<id column="ID" property="id" />
-		<result column="DNAME" property="dname" />
-	</resultMap>
 
-	<!-- 新增一条部门信息 -->
-	<insert id="insert" parameterType="Department">
-		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
-			resultType="java.lang.Integer">
-			select T_DEPARTMENT_ID_SEQ.nextval from dual
-		</selectKey>
-		insert into T_DEPARTMENT values (#{dname})
-	</insert>
-
-	<!-- 删除一条部门信息 -->
-	<delete id="deleteById">
-		delete from T_DEPARTMENT where ID = #{id}
-	</delete>
-
-	<!-- 修改一条部门信息 -->
-	<update id="updateByObj" parameterType="Department">
-		update T_DEPARTMENT
-		<trim prefix="set" suffixOverrides=",">
-			<if test=" dname != null ">
-				DNAME = #{dname},
-			</if>
-		</trim>
-		where ID=#{id}
-	</update>
-
-	<!-- *****查询***** -->
-	<select id="queryById" resultMap="departmentMap">
-		select * from T_DEPARTMENT
-		where ID = #{id}
-	</select>
-
-	<select id="queryByAll" resultMap="departmentMap">
-		select * from T_DEPARTMENT
-	</select>
+	
+	
+	
+	
 </mapper>

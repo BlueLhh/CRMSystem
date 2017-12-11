@@ -19,12 +19,11 @@
 		<!-- <association property="province" select="com.oracleoaec.mybatisdemo.dao.IProvinceDao.queryById" 
 			column="PRO_ID" javaType="Province" /> -->
 
-		<!-- select 路径后记得加上根据ID来查询的方法 -->
-		<association property="jobInfoId"
-			select="com.lhh.crmsystem.dao.IJobInfoDao.queryById" column="JOBINFOID"
-			javaType="JobInfo" />
+		<!-- select 路径后记得加上根据ID来查询的方法名字 -->
+		<association property="jobInfoId" select="com.lhh.crmsystem.dao.IJobInfoDao"
+			column="JOBINFOID" javaType="JobInfo" />
 		<association property="departmentId"
-			select="com.lhh.crmsystem.dao.IDepartmentDao.queryById" column="DEPARTMENTID"
+			select="com.lhh.crmsystem.dao.IDepartmentDao" column="DEPARTMENTID"
 			javaType="Department" />
 
 	</resultMap>
@@ -139,11 +138,4 @@
 			</if>
 		</trim>
 	</select>
-
-	<!-- 查询全部员工的信息 -->
-	<select id="queryByAll" resultMap="employeeMap">
-		select * from
-		T_EMPLOYEE
-	</select>
-
 </mapper>
