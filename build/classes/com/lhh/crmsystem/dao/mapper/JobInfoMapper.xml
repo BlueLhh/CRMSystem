@@ -2,8 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lhh.crmsystem.dao.IJobInfoDao">
 
-	
-	
-	
-	
+	<resultMap type="JobInfo" id="jobInfoMap">
+		<id column="ID" property="id" />
+		<result column="JOB" property="job" />
+
+		<association property="departmentId"
+			select="com.lhh.crmsystem.dao.IDepartmentDao.queryById" column="departmentId"
+			javaType="Department" />
+
+	</resultMap>
+
+	<!-- 新增职位信息 -->
+	<insert id="insert" parameterType="JobInfo">
+		<selectKey keyColumn="ID" keyProperty="id" order="BEFORE"
+			resultType="java.lang.Integer">
+			select T_JOBINFO_ID_SEQ.nextval from dual
+		</selectKey>
+		insert into T_JOBINFO values (#{job},#{departmentId.id})
+	</insert>
+
+	<!-- 删除职位信息 -->
+	<delete id="deleteById">
+		delete form T_JOBINFO where ID = #{id}
+	</delete>
+
+	<!-- 修改职位信息 -->
+	<update id="updateByObj" parameterType="JobInfo">
+		update T_JOBINFO
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" job != null ">
+				JBO = #{job},
+			</if>
+			<if test=" departmentId != null ">
+				DEPARTMENTID = #{departmentId.id},
+			</if>
+		</trim>
+		where ID = #{id}
+	</update>
+
+	<!-- **********查询职位信息********* -->
+	<select id="queryById" resultMap="jobInfoMap">
+		select * from T_JOBINFO where ID = #{id}
+	</select>
+
+	<select id="queryByAll" resultMap="jobInfoMap">
+		select * from T_JOBINFO
+	</select>
+
 </mapper>
