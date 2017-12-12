@@ -2,6 +2,9 @@ package com.lhh.crmsystem.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lhh.crmsystem.entity.Employee;
 import com.lhh.crmsystem.service.IEmployeeService;
 
@@ -21,6 +26,7 @@ public class EmployeeController {
 	@Autowired
 	private IEmployeeService empService;
 
+	// 登录验证
 	@RequestMapping("/login")
 	public String login(String username, String pass, HttpServletRequest request, HttpServletResponse response) {
 		Employee employee = empService.login(username, pass);
@@ -58,6 +64,7 @@ public class EmployeeController {
 		}
 	}
 
+	// 退出
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 
@@ -68,4 +75,23 @@ public class EmployeeController {
 		return "/login.jsp";
 	}
 
+	// 查询全部信息
+	@RequestMapping("/allInfo")
+	public void allInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// 当前页数
+		String currentPage = request.getParameter("page");
+		// 每页显示的条数
+		String pageSize = request.getParameter("rows");
+		System.out.println("page:" + currentPage);
+		System.out.println("rows:" + pageSize);
+		List<Employee> empList = empService.queryAll();
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", 100);// 总条数
+		map.put("rows", empList);// 当前页的数据
+		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+		response.getWriter().write(jsonString);
+	}
 }

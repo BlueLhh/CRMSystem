@@ -20,6 +20,8 @@ public interface IEmployeeService {
 
 	public int updateEmployee(Employee employee);
 
+	public Employee updateEmployeeByObj(Employee employee);
+
 	public Employee queryEmployee(Integer id);
 
 	public List<Employee> queryAll();

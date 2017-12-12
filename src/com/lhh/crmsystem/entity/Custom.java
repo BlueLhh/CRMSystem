@@ -3,6 +3,8 @@ package com.lhh.crmsystem.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 客户基础信息表
  * 
@@ -21,8 +23,10 @@ public class Custom {
 	private String inviteName;// 邀请人姓名
 
 	// 客户可以有多个咨询师
+	@JSONField(serialize = false)
 	private List<ConsultRecord> conList;
 	// 客户与销售跟踪信息关系 一对多
+	@JSONField(serialize = false)
 	private List<CustomInfo> cusList;
 
 	public Custom() {

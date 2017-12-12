@@ -2,6 +2,8 @@ package com.lhh.crmsystem.entity;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 员工表
  * 
@@ -21,8 +23,10 @@ public class Employee {
 	private String workStatu;// 员工在职状态
 
 	// 一个员工可以对多个客户进行跟踪 与跟踪单有一对多关系
+	@JSONField(serialize = false)
 	private List<ConsultRecord> conList;
 	// 一个员工可以对多个客户进行跟踪 与销售单有一对多关系
+	@JSONField(serialize = false)
 	private List<CustomInfo> cusList;
 
 	public Employee() {
@@ -143,7 +147,8 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", username=" + username + ", pass=" + pass + ", nickname=" + nickname
-				+ ", realname=" + realname + ", phoneNo=" + phoneNo + ", officeTel=" + officeTel + ", workStatu="
+				+ ", realname=" + realname + ", jobInfoId=" + jobInfoId.getJob() + ", departmentId="
+				+ departmentId.getDname() + ", phoneNo=" + phoneNo + ", officeTel=" + officeTel + ", workStatu="
 				+ workStatu + "]";
 	}
 }

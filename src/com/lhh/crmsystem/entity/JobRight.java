@@ -1,5 +1,7 @@
 package com.lhh.crmsystem.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 职位权限对照表
  * 
@@ -8,7 +10,9 @@ package com.lhh.crmsystem.entity;
  */
 public class JobRight {
 	private int id;// 序号
+	@JSONField(serialize = false)
 	private JobInfo jobInfoId;// 职位编号
+	@JSONField(serialize = false)
 	private Rights rightsId;// 权利编号
 
 	public JobRight() {

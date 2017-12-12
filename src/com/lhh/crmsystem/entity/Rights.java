@@ -2,6 +2,8 @@ package com.lhh.crmsystem.entity;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 权限表
  * 
@@ -13,11 +15,13 @@ public class Rights {
 	private String rightName;// 权限名称
 	private String rightType;// 权限级别
 	private String url;// 选项卡URL值
+	@JSONField(serialize = false)
 	private Rights pid;// 类别编号
 
 	// 多个职位人员可以拥有同一个权限
+	@JSONField(serialize = false)
 	private List<JobRight> jobrList;
-
+	@JSONField(serialize = false)
 	private List<Rights> rigList;
 
 	public Rights() {

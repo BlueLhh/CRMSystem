@@ -2,6 +2,8 @@ package com.lhh.crmsystem.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 销售客户跟踪信息表
  * 
@@ -10,7 +12,9 @@ import java.util.Date;
  */
 public class CustomInfo {
 	private int id;// 序号
+	@JSONField(serialize = false)
 	private Custom customId;// 客户编号
+	@JSONField(serialize = false)
 	private Employee followManId;// 跟单人编号
 	private String statu;// 跟单状态
 	private Date startDate;// 开始日期

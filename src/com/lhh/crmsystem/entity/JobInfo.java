@@ -2,6 +2,8 @@ package com.lhh.crmsystem.entity;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 职位信息表
  * 
@@ -11,11 +13,14 @@ import java.util.List;
 public class JobInfo {
 	private int id;// 职位编号
 	private String job;// 职位名称
+	@JSONField(serialize = false)
 	private Department departmentId;// 部门编号
 
 	// 一个职位可以有多名员工
+	@JSONField(serialize = false)
 	private List<Employee> empList;
 	// 一个职位可以有多个权限
+	@JSONField(serialize = false)
 	private List<JobRight> jobrList;
 
 	public JobInfo(int id, String job, Department departmentId) {

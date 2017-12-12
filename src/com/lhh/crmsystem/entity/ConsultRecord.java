@@ -2,6 +2,8 @@ package com.lhh.crmsystem.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 咨询师跟单记录表
  * 
@@ -10,7 +12,9 @@ import java.util.Date;
  */
 public class ConsultRecord {
 	private int id;
+	@JSONField(serialize = false)
 	private Custom customId;// 客户编号
+	@JSONField(serialize = false)
 	private Employee consultManId;// 咨询师编号
 	private String consultStatu;// 咨询状态
 	private Date consultDate;// 咨询日期
