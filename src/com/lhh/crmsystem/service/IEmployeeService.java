@@ -1,5 +1,7 @@
 package com.lhh.crmsystem.service;
 
+import java.util.List;
+
 import com.lhh.crmsystem.entity.Employee;
 
 public interface IEmployeeService {
@@ -11,4 +13,14 @@ public interface IEmployeeService {
 	 * @return
 	 */
 	public Employee login(String username, String pass);
+
+	public int insertEmployee(Employee employee);
+
+	public int deleteEmployee(Integer id);
+
+	public int updateEmployee(Employee employee);
+
+	public Employee queryEmployee(Integer id);
+
+	public List<Employee> queryAll();
 }
