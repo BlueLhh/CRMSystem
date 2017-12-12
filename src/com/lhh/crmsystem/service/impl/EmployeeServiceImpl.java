@@ -63,4 +63,11 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		int rows = empDao.insert(employee);
 		return rows;
 	}
+
+	@Override
+	public Employee queryEmployeeByObj(Employee employee) {
+		Employee emp;
+		emp = empDao.queryByObj(employee);
+		return emp;
+	}
 }

@@ -119,4 +119,41 @@ public class EmployeeController {
 		System.out.println("插入成功！");
 		return "/view/frame/admin_add.jsp";
 	}
+
+	// 条件查询员工
+	@RequestMapping("/findEmployeeByAjax")
+	public void findEmployeeByAjax(Employee employee, String name, HttpServletResponse resp) {
+		// 判断 如果是数值型则转成通过ID查询员工，否则通过真实姓名查询
+		String data = name.trim();
+		try {
+			Integer valueOf = Integer.valueOf(data);
+			employee.setId(valueOf);
+		} catch (Exception e) {
+			employee.setRealname(data);
+		}
+		Employee emp = new Employee();
+		emp = empService.queryEmployeeByObj(employee);
+
+		// 如果找不到员工 则弹出提示语 测试失败
+		if (emp == null) {
+			try {
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.flush();
+				out.println("<script>javascript:alert('找不到该员工！请重新输入！');history.back();</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println(emp);
+			// 转成JSON
+			String jsonStr = JSON.toJSONString(emp);
+			System.out.println(jsonStr);
+			try {
+				resp.getWriter().write(jsonStr);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

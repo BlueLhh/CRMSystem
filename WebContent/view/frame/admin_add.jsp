@@ -26,7 +26,28 @@
 	src="<%=basePath%>resource/js/My97DatePicker/WdatePicker.js"></script>
 <script language="JavaScript" type="text/javascript"
 	src="<%=basePath%>resource/js/FormValid.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
 
+<script type="text/javascript">
+	function btnClick() {
+		var input = $("#input").val();
+		$.post("employee/findEmployeeByAjax.do", {
+			name : input
+		}, function(data) {
+			var obj = JSON.parse(data);
+			$("#username").val(obj.username);
+			$("#pass").val(obj.pass);
+			$("#nickname").val(obj.nickname);
+			$("#realname").val(obj.realname);
+			$("#jobInfoId").val(obj.jobInfoId.job);
+			$("#departmentId").val(obj.departmentId.dname);
+			$("#phoneNo").val(obj.phoneNo);
+			$("#officeTel").val(obj.officeTel);
+			$("#workStatu").val(obj.workStatu);
+		});
+	}
+</script>
 
 </head>
 
@@ -61,12 +82,10 @@
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px"
-					readonly="readonly" value="管理员"></td>
+					maxlength="10" style="width: 145px" readonly="readonly" value="管理员"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px"
-					readonly="readonly" value="技术部"></td>
+					maxlength="50" style="width: 145px" readonly="readonly" value="技术部"></td>
 			</tr>
 
 			<tr>
@@ -102,54 +121,53 @@
 				<td class=editHeaderTd colSpan=7>请输入员工的编号（已存在该员工，此操作为更改员工的部门以及职位信息）</td>
 			</tr>
 			<tr class=editHeaderTr>
-				<td class=editHeaderTd colSpan=7>请输入员工编号进行查询：<input type="text"
-					maxlength="10" style="width: 145px" valid="required"
-					errmsg="员工编号不能为空!" name="id">&nbsp;&nbsp;<input
-					type="button" name="submit" value="查询"></td>
+				<td class=editHeaderTd colSpan=7>请输入信息查询（真实姓名或者编号）：<input
+					type="text" maxlength="10" style="width: 145px" id="input">&nbsp;&nbsp;<input
+					type="button" onclick="btnClick()" value="查询"></td>
 			</tr>
 			<tr>
 
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					maxlength="10" style="width: 145px" readonly="readonly"
-					valid="required" errmsg="!" name="adminName"></td>
+					name="username" id="username"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerMsn"
+					maxlength="50" style="width: 145px" name="pass" id="pass"
 					readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">昵称：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerAddress"
+					maxlength="50" style="width: 145px" name="nickname" id="nickname"
 					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">真实姓名：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" name="customerChangeMan"
+					maxlength="10" style="width: 145px" name="realname" id="realname"
 					readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" valid="required"
-					errmsg="创建人不能为空!" name="customerAddMan" readonly="readonly"></td>
+					maxlength="10" style="width: 145px" name="jobInfoId" id="jobInfoId"
+					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerBlog"
-					readonly="readonly"></td>
+					maxlength="50" style="width: 145px" name="departmentId"
+					id="departmentId" readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">手机号：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的手机号码!"
-					style="width: 145px" name="customerMobile" readonly="readonly"></td>
+					style="width: 145px" name="phoneNo" id="phoneNo"
+					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">办公电话：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="isQQ" errmsg="请输入正确的QQ号码!" style="width: 145px"
-					name="customerQq" readonly="readonly"></td>
+					style="width: 145px" name="officeTel" id="officeTel"
+					readonly="readonly"></td>
 			</tr>
 
 		</table>

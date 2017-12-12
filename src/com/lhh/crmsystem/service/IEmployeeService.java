@@ -26,5 +26,7 @@ public interface IEmployeeService {
 
 	public Employee queryEmployee(Integer id);
 
+	public Employee queryEmployeeByObj(Employee employee);
+
 	public List<Employee> queryAll();
 }
