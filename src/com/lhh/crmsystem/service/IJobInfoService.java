@@ -1,5 +1,7 @@
 package com.lhh.crmsystem.service;
 
-public interface IJobInfoService {
+import com.lhh.crmsystem.entity.JobInfo;
 
+public interface IJobInfoService {
+	public JobInfo queryJobInfo(Integer id);
 }

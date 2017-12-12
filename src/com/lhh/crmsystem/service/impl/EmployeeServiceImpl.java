@@ -58,4 +58,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return list;
 	}
 
+	@Override
+	public int insertAdmin(Employee employee) {
+		int rows = empDao.insert(employee);
+		return rows;
+	}
 }

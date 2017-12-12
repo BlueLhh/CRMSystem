@@ -16,6 +16,8 @@ public interface IEmployeeService {
 
 	public int insertEmployee(Employee employee);
 
+	public int insertAdmin(Employee employee);
+
 	public int deleteEmployee(Integer id);
 
 	public int updateEmployee(Employee employee);

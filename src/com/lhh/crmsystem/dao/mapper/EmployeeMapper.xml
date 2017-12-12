@@ -42,7 +42,7 @@
 			select T_EMPLOYEE_ID_SEQ.nextval from dual
 		</selectKey>
 		insert into T_EMPLOYEE values
-		(#{username},#{pass},#{nickname},#{realname},#{jobInfoId.id},#{departmentId.id},#{phoneNo},#{officeTel},#{workStatu})
+		(#{id},#{username},#{pass},#{nickname},#{realname},#{jobInfoId.id},#{departmentId.id},#{phoneNo},#{officeTel},#{workStatu})
 	</insert>
 
 	<!-- 删除员工 -->

@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.lhh.crmsystem.entity.Department;
 import com.lhh.crmsystem.entity.Employee;
+import com.lhh.crmsystem.entity.JobInfo;
+import com.lhh.crmsystem.service.IDepartmentService;
 import com.lhh.crmsystem.service.IEmployeeService;
+import com.lhh.crmsystem.service.IJobInfoService;
 
 @Controller
 @RequestMapping("/employee")
@@ -25,6 +29,10 @@ public class EmployeeController {
 
 	@Autowired
 	private IEmployeeService empService;
+	@Autowired
+	private IDepartmentService deptService;
+	@Autowired
+	private IJobInfoService jobService;
 
 	// 登录验证
 	@RequestMapping("/login")
@@ -93,5 +101,22 @@ public class EmployeeController {
 		map.put("rows", empList);// 当前页的数据
 		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
 		response.getWriter().write(jsonString);
+	}
+
+	// 添加管理员
+	@RequestMapping("/adminAdd")
+	public String adminAdd(Employee employee) {
+		// 查询部门和职位
+		JobInfo job = jobService.queryJobInfo(2);
+		System.out.println(job);
+		Department dept = deptService.queryDepartment(1);
+		System.out.println(dept);
+		employee.setWorkStatu("1");
+		employee.setJobInfoId(job);
+		employee.setDepartmentId(dept);
+		System.out.println(employee);
+		empService.insertAdmin(employee);
+		System.out.println("插入成功！");
+		return "/view/frame/admin_add.jsp";
 	}
 }

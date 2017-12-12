@@ -76,6 +76,6 @@ public class JobInfo {
 
 	@Override
 	public String toString() {
-		return "JobInfo [id=" + id + ", job=" + job + ", departmentId=" + departmentId + "]";
+		return "JobInfo [id=" + id + ", job=" + job + "]";
 	}
 }

@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<form action="<%=basePath%>customer/cusAdd.do" name="form1"
+	<form action="<%=basePath%>employee/adminAdd.do" name="form1"
 		onsubmit="return validator(this)" method="post">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
@@ -43,30 +43,29 @@
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					maxlength="10" style="width: 145px" valid="required"
-					errmsg="客户姓名不能为空!" name="adminName"></td>
+					errmsg="账号不能为空!" name="username"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerMsn"></td>
+				<td colspan="3" bgcolor="#FFFFFF"><input type="password"
+					maxlength="50" style="width: 145px" name="pass"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">昵称：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerAddress"></td>
+					maxlength="50" style="width: 145px" name="nickname"></td>
 				<td bgcolor="#FFFDF0"><div align="center">真实姓名：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" name="customerChangeMan"></td>
+					maxlength="10" style="width: 145px" name="realname"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" valid="required"
-					errmsg="创建人不能为空!" name="customerAddMan" readonly="readonly"
-					value="管理员"></td>
+					maxlength="10" style="width: 145px"
+					readonly="readonly" value="管理员"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerBlog"
+					maxlength="50" style="width: 145px"
 					readonly="readonly" value="技术部"></td>
 			</tr>
 
@@ -74,11 +73,11 @@
 				<td bgcolor="#FFFDF0"><div align="center">手机号：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的手机号码!"
-					style="width: 145px" name="customerMobile"></td>
+					style="width: 145px" name="phoneNo"></td>
 				<td bgcolor="#FFFDF0"><div align="center">办公电话：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="isQQ" errmsg="请输入正确的QQ号码!" style="width: 145px"
-					name="customerQq"></td>
+					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的电话号码!"
+					style="width: 145px" name="officeTel"></td>
 			</tr>
 
 		</table>
@@ -95,7 +94,7 @@
 			</tr>
 		</table>
 	</form>
-	<form action="<%=basePath%>customer/cusAdd.do" name="form1"
+	<form action="<%=basePath%>employee/updateToAdmin.do" name="form1"
 		onsubmit="return validator(this)" method="post">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
@@ -105,7 +104,7 @@
 			<tr class=editHeaderTr>
 				<td class=editHeaderTd colSpan=7>请输入员工编号进行查询：<input type="text"
 					maxlength="10" style="width: 145px" valid="required"
-					errmsg="员工编号不能为空!" name="adminName">&nbsp;&nbsp;<input
+					errmsg="员工编号不能为空!" name="id">&nbsp;&nbsp;<input
 					type="button" name="submit" value="查询"></td>
 			</tr>
 			<tr>
@@ -113,7 +112,7 @@
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					maxlength="10" style="width: 145px" readonly="readonly"
-					valid="required" errmsg="客户姓名不能为空!" name="adminName"></td>
+					valid="required" errmsg="!" name="adminName"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					maxlength="50" style="width: 145px" name="customerMsn"
