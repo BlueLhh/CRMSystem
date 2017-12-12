@@ -40,9 +40,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee updateEmployeeByObj(Employee employee) {
-		Employee emp = empDao.queryByObj(employee);
-		return emp;
+	public int updateEmployeeByObj(Employee employee) {
+		int rows = empDao.updateByObj(employee);
+		return rows;
 	}
 
 	@Override

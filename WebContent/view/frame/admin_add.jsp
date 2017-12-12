@@ -113,7 +113,7 @@
 			</tr>
 		</table>
 	</form>
-	<form action="<%=basePath%>employee/updateToAdmin.do" name="form1"
+	<form action="<%=basePath%>employee/updateToAdmin.do" name="form2"
 		onsubmit="return validator(this)" method="post">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
@@ -151,12 +151,12 @@
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" name="jobInfoId" id="jobInfoId"
+					maxlength="10" style="width: 145px" id="jobInfoId"
 					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="departmentId"
-					id="departmentId" readonly="readonly"></td>
+					maxlength="50" style="width: 145px" id="departmentId"
+					readonly="readonly"></td>
 			</tr>
 
 			<tr>
@@ -176,8 +176,9 @@
 			align=center border=0>
 			<tr bgcolor="#ECF3FD">
 				<td width="25%"></td>
-				<td width="17%"><input type="submit" name="submit" value="确认添加"></td>
-				<td width="4%"><input type="button" name="button"
+				<td width="17%"><input type="submit" name="submit2"
+					value="确认添加"></td>
+				<td width="4%"><input type="button" name="button2"
 					onClick="history.back() " value="返回"></td>
 				<td width="43%"></td>
 			</tr>

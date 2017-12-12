@@ -22,7 +22,7 @@ public interface IEmployeeService {
 
 	public int updateEmployee(Employee employee);
 
-	public Employee updateEmployeeByObj(Employee employee);
+	public int updateEmployeeByObj(Employee employee);
 
 	public Employee queryEmployee(Integer id);
 

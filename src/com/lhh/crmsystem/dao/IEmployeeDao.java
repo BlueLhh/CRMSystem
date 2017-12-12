@@ -35,7 +35,7 @@ public interface IEmployeeDao {
 	 * @param employee
 	 * @return
 	 */
-	public Employee updateByObj(Employee employee);
+	public int updateByObj(Employee employee);
 
 	/******* 查询 ********/
 	/**

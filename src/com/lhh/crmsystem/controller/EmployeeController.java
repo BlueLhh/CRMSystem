@@ -84,18 +84,14 @@ public class EmployeeController {
 	}
 
 	// 查询全部信息
+	@SuppressWarnings("unused")
 	@RequestMapping("/allInfo")
 	public void allInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 当前页数
 		String currentPage = request.getParameter("page");
 		// 每页显示的条数
 		String pageSize = request.getParameter("rows");
-		System.out.println("page:" + currentPage);
-		System.out.println("rows:" + pageSize);
 		List<Employee> empList = empService.queryAll();
-		for (Employee employee : empList) {
-			System.out.println(employee);
-		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", 100);// 总条数
 		map.put("rows", empList);// 当前页的数据
@@ -108,21 +104,37 @@ public class EmployeeController {
 	public String adminAdd(Employee employee) {
 		// 查询部门和职位
 		JobInfo job = jobService.queryJobInfo(2);
-		System.out.println(job);
 		Department dept = deptService.queryDepartment(1);
-		System.out.println(dept);
 		employee.setWorkStatu("1");
 		employee.setJobInfoId(job);
 		employee.setDepartmentId(dept);
 		System.out.println(employee);
 		empService.insertAdmin(employee);
-		System.out.println("插入成功！");
+		return "/view/frame/admin_add.jsp";
+	}
+
+	// 将一个员工更改为管理员
+	@RequestMapping("/updateToAdmin")
+	public String updateToAdmin(Employee employee, HttpServletRequest request) {
+
+		JobInfo job = jobService.queryJobInfo(2);
+		Department dept = deptService.queryDepartment(1);
+		int id = (int) request.getSession().getAttribute("empId");
+		System.out.println("id+++++++++++++++" + id);
+		employee.setWorkStatu("1");
+		employee.setJobInfoId(job);
+		employee.setDepartmentId(dept);
+		employee.setId(id);
+		System.out.println("还没有更新之前：" + employee);
+		empService.updateEmployeeByObj(employee);
+		System.out.println("更改成功！");
 		return "/view/frame/admin_add.jsp";
 	}
 
 	// 条件查询员工
 	@RequestMapping("/findEmployeeByAjax")
-	public void findEmployeeByAjax(Employee employee, String name, HttpServletResponse resp) {
+	public void findEmployeeByAjax(Employee employee, String name, HttpServletRequest request,
+			HttpServletResponse resp) {
 		// 判断 如果是数值型则转成通过ID查询员工，否则通过真实姓名查询
 		String data = name.trim();
 		try {
@@ -145,10 +157,13 @@ public class EmployeeController {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println(emp);
 			// 转成JSON
 			String jsonStr = JSON.toJSONString(emp);
-			System.out.println(jsonStr);
+
+			// 保存ID
+			HttpSession session = request.getSession(false);
+			session.setAttribute("empId", emp.getId());
+
 			try {
 				resp.getWriter().write(jsonStr);
 			} catch (IOException e) {
