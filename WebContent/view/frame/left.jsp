@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <%@page import="com.sxxy.po.UserInfo"%> --%>
 <%
 	String path = request.getContextPath();
@@ -91,1125 +92,1065 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 				</table>
 			</td>
 		</tr>
+
 		<tr>
 			<td valign="top">
 				<table width="151" border="0" align="center" cellpadding="0"
 					cellspacing="0">
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu1" class="menu_title"
-										onMouseOver="this.className='menu_title2';"
-										onClick="showsubmenu(1)"
-										onMouseOut="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">客户资料</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu1">
-										<div class="sec_menu">
+
+					<!-- 客户资料开始 -->
+					<!-- 如果登录的账号是销售助理，则显示该功能 -->
+					<c:if test="${sessionScope.job == '销售助理' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu1" class="menu_title"
+											onMouseOver="this.className='menu_title2';"
+											onClick="showsubmenu(1)"
+											onMouseOut="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<!-- 客户资料----销售助理账号权限开始 -->
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>/view/frame/cus_info.jsp"
-																					target="mainFrame">添加客户信息</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr<%-- <%   if  (userInfo.getRolePower()  !=  3 &&  userInfo.getRolePower()  !=  4 ) {%> style=" display: none  "  <%}%> --%>>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/cus_allocatasks.jsp"
-																					target="mainFrame">修改客户信息</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>/view/frame/cus_care.jsp"
-																					target="mainFrame">分配客户</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 客户资料----销售助理账号权限结束 -->
-															<%-- <tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/cus_type.jsp"
-																					target="mainFrame">客户类型</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr> --%>
-															<%-- <tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/cus_condition.jsp"
-																					target="mainFrame">客户状态</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr> --%>
-															<%-- <tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/cus_source.jsp"
-																					target="mainFrame">客户来源</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr> --%>
-															<%-- <tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>/view/frame/cus_source.jsp"
-																					target="mainFrame">联系记录</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr> --%>
-															<%-- <tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>/view/frame/cus_linkman.jsp"
-																					target="mainFrame">联系人</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr> --%>
-
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">客户资料</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu1">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<!-- 客户资料----销售助理账号权限开始 -->
+																<tr>
+																	<td width="16%" height="25">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td width="84%" height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"><a
+																						href="<%=basePath%>/view/frame/cus_info.jsp"
+																						target="mainFrame">添加客户信息</a> </span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr<%-- <%   if  (userInfo.getRolePower()  !=  3 &&  userInfo.getRolePower()  !=  4 ) {%> style=" display: none  "  <%}%> --%>>
+																	<td height="23">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"> <a
+																						href="<%=basePath%>/view/frame/cus_allocatasks.jsp"
+																						target="mainFrame">修改客户信息</a>
+																				</span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
 
-							</table>
-						</td>
-					</tr>
+																<tr>
+																	<td height="23">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"><a
+																						href="<%=basePath%>/view/frame/cus_care.jsp"
+																						target="mainFrame">分配客户</a> </span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<!-- 客户资料----销售助理账号权限结束 -->
+
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+
+								</table>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 客户资料结束 -->
 
 
 
-
-
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu3" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(3)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">报表管理</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu3">
-										<div class="sec_menu">
+					<!-- 报表管理开始 -->
+					<c:if
+						test="${sessionScope.job == '超级管理员' || sessionScope.job == '销售助理'  || sessionScope.job == '销售员' || sessionScope.job == '网络咨询' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu3" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(3)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<!-- 报表管理---超级管理员权限开始 -->
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>/view/frame/user_info.jsp"
-																					target="mainFrame">查询所有员工</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/house_info.jsp"
-																					target="mainFrame">查询所有客户</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 报表管理---超级管理员权限结束 -->
-															<!-- 报表管理---销售助理账号权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/house_type.jsp"
-																					target="mainFrame">客户信息导入</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>/view/frame/department_info.jsp"
-																					target="mainFrame">客户信息导出</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 报表管理---销售助理账号权限结束 -->
-															<!-- 报表管理---销售员账号权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>servlet/NoticeQueryServlet"
-																					target="mainFrame">导出客户开发报表</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 报表管理---销售员账号权限结束 -->
-															<!-- 报表管理---网络咨询账号权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>servlet/NoticeQueryServlet"
-																					target="mainFrame">导出客户开发报表</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">报表管理</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu3">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<!-- 报表管理---超级管理员权限开始 -->
+																<c:if test="${sessionScope.job == '超级管理员' }">
+																	<tr>
+																		<td width="16%" height="25">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td width="84%" height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>/view/frame/user_info.jsp"
+																							target="mainFrame">查询所有员工</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>/view/frame/cus_info.jsp"
+																							target="mainFrame">查询所有客户</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 报表管理---超级管理员权限结束 -->
+																<!-- 报表管理---销售助理账号权限开始 -->
+																<c:if test="${sessionScope.job == '销售助理' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>/view/frame/house_type.jsp"
+																							target="mainFrame">客户信息导入</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>/view/frame/department_info.jsp"
+																							target="mainFrame">客户信息导出</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 报表管理---销售助理账号权限结束 -->
+																<!-- 报表管理---销售员账号权限开始 -->
+																<!-- 报表管理---网络咨询账号权限开始 -->
+																<c:if
+																	test="${sessionScope.job == '销售助理'  || sessionScope.job == '网络咨询' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>servlet/NoticeQueryServlet"
+																							target="mainFrame">导出客户开发报表</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 报表管理---销售员账号权限结束 -->
 																<!-- 报表管理---网络咨询账号权限结束 -->
-														</table>
-													</td>
-												</tr>
+															</table>
+														</td>
+													</tr>
 
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
-												</tr>
-											</table>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 报表管理结束 -->
 
 
 
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu2" class="menu_title"
-										onMouseOver="this.className='menu_title2';"
-										onClick="showsubmenu(2)"
-										onMouseOut="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">账号管理</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu2">
-										<div class="sec_menu">
+					<!-- 账号管理开始 -->
+					<c:if
+						test="${sessionScope.job == '超级管理员' || sessionScope.job == '管理员' || sessionScope.job == '销售助理' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu2" class="menu_title"
+											onMouseOver="this.className='menu_title2';"
+											onClick="showsubmenu(2)"
+											onMouseOut="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">账号管理</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu2">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
 																<!-- 账号管理--超级管理员权限开始 -->
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryManServlet"
-																					target="mainFrame">添加管理员账号</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>servlet/EmailQueryServlet"
-																					target="mainFrame">删除管理员账号</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">查看所有员工</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
+																<c:if test="${sessionScope.job == '超级管理员' }">
+																	<tr>
+																		<td width="16%" height="25">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+
+																		<td width="84%" height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							<%-- href="<%=basePath%>servlet/EmailQueryManServlet" --%>
+																							href="<%=basePath%>view/frame/admin_add.jsp"
+																							target="mainFrame">添加管理员账号</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>view/frame/admin_delete.jsp"
+																							target="mainFrame">删除管理员账号</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>view/frame/user_info.jsp"
+																							target="mainFrame">查看所有员工</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+
+																	</tr>
+																</c:if>
 																<!-- 账号管理--超级管理员权限结束 -->
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
 																<!-- 账号管理--管理员账号权限开始 -->
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">添加普通用户账号</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">删除普通用户账号</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">重置用户密码</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 账号管理--管理员账号权限结束 -->
-															<!-- 账号管理--销售助理账号权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">查询所有销售员工</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/EmailQueryNoSendServlet"
-																					target="mainFrame">查询所有咨询员工</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 账号管理--销售助理账号权限结束 -->
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
-												</tr>
-											</table>
-										</div>
-									</td>
-								</tr>
+																<c:if test="${sessionScope.job == '管理员' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
 
-							</table>
-						</td>
-					</tr>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							target="mainFrame">添加普通用户账号</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							target="mainFrame">删除普通用户账号</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							target="mainFrame">重置用户密码</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 账号管理--管理员账号权限结束 -->
+																<!-- 账号管理--销售助理账号权限开始 -->
+																<c:if test="${sessionScope.job == '销售助理' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							target="mainFrame">查询所有销售员工</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							target="mainFrame">查询所有咨询员工</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 账号管理--销售助理账号权限结束 -->
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
+								</table>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 账号管理结束 -->
 
-
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu4" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(4)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">权限管理</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu4" style="DISPLAY:">
-										<div class="sec_menu">
+					<!-- 权限管理开始 -->
+					<c:if test="${sessionScope.job == '超级管理员' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu4" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(4)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/UserAddServlet"
-																					target="mainFrame">增加职位</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/department/department_add.jsp"
-																					target="mainFrame">修改职位权限</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/role/role_add.jsp"
-																					target="mainFrame">删除权限</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">权限管理</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu4" style="DISPLAY:">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<tr>
+																	<td width="16%" height="25">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td width="84%" height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"><a
+																						href="<%=basePath%>view/frame/job_add.jsp"
+																						target="mainFrame">增加职位</a> </span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr>
+																	<td height="23">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"> <a
+																						href="<%=basePath%>view/frame/job_update.jsp"
+																						target="mainFrame">修改职位权限</a>
+																				</span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr>
+																	<td height="23">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"> <a
+																						href="<%=basePath%>view/frame/job_update.jsp"
+																						target="mainFrame">删除权限</a>
+																				</span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
-							</table>
-						</td>
-					</tr>
+								</table>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 权限管理结束 -->
 
 					<!-- 客户开发开始 -->
-
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu4" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(4)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">客户开发</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu4" style="DISPLAY:">
-										<div class="sec_menu">
+					<c:if
+						test="${sessionScope.job == '销售员' || sessionScope.job == '网络咨询' || sessionScope.job == '销售主管' || sessionScope.job == '网络咨询主管' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu4" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(4)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<!-- 客户开发----销售员/网络咨询账号权限开始 -->
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/UserAddServlet"
-																					target="mainFrame">查看所有状态客户开发信息</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/department/department_add.jsp"
-																					target="mainFrame">修改指定客户开发信息</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 客户开发----销售员/网络咨询账号权限结束 -->
-															<!-- 客户开发----销售主管/网络主管账号权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/role/role_add.jsp"
-																					target="mainFrame">查看部门员工客户开发信息</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">客户开发</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu4" style="DISPLAY:">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<!-- 客户开发----销售员/网络咨询账号权限开始 -->
+																<c:if
+																	test="${sessionScope.job == '销售员' || sessionScope.job == '网络咨询' }">
+																	<tr>
+																		<td width="16%" height="25">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td width="84%" height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/UserAddServlet"
+																							target="mainFrame">查看所有状态客户开发信息</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
 
-							</table>
-						</td>
-					</tr>
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>view/department/department_add.jsp"
+																							target="mainFrame">修改指定客户开发信息</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 客户开发----销售员/网络咨询账号权限结束 -->
+																<!-- 客户开发----销售主管/网络主管账号权限开始 -->
+																<c:if
+																	test="${sessionScope.job == '销售主管' || sessionScope.job == '网络咨询主管' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>view/role/role_add.jsp"
+																							target="mainFrame">查看部门员工客户开发信息</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 客户开发----销售主管/网络主管账号权限结束 -->
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
+								</table>
+							</td>
+						</tr>
+					</c:if>
 					<!-- 客户开发结束 -->
 					<!-- 客户咨询开始 -->
-
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu4" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(4)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">客户咨询</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu4" style="DISPLAY:">
-										<div class="sec_menu">
+					<c:if test="${sessionScope.job == '咨询师' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu4" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(4)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<!-- 客户咨询----咨询师权限开始 -->
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/UserAddServlet"
-																					target="mainFrame">查看所有状态的客户咨询信息</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/department/department_add.jsp"
-																					target="mainFrame">修改指定客户咨询信息</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 客户咨询----咨询师权限结束 -->
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">客户咨询</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu4" style="DISPLAY:">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<!-- 客户咨询----咨询师权限开始 -->
+																<tr>
+																	<td width="16%" height="25">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td width="84%" height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"><a
+																						href="<%=basePath%>servlet/UserAddServlet"
+																						target="mainFrame">查看所有状态的客户咨询信息</a> </span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr>
+																	<td height="23">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"> <a
+																						href="<%=basePath%>view/department/department_add.jsp"
+																						target="mainFrame">修改指定客户咨询信息</a>
+																				</span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<!-- 客户咨询----咨询师权限结束 -->
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
-							</table>
-						</td>
-					</tr>
-
+								</table>
+							</td>
+						</tr>
+					</c:if>
 					<!-- 客户咨询结束 -->
 					<!-- 部门管理开始 -->
 
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu4" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(4)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">部门管理</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu4" style="DISPLAY:">
-										<div class="sec_menu">
+					<c:if
+						test="${sessionScope.job == '销售主管' || sessionScope.job == '网络咨询主管' || sessionScope.job == '咨询师主管' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu4" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(4)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/UserAddServlet"
-																					target="mainFrame">查看部门员工信息</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">部门管理</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu4" style="DISPLAY:">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<tr>
+																	<td width="16%" height="25">
+																		<div align="center">
+																			<img src="<%=basePath%>resource/images/left.gif"
+																				width="10" height="10" />
+																		</div>
+																	</td>
+																	<td width="84%" height="23">
+																		<table width="95%" border="0" cellspacing="0"
+																			cellpadding="0">
+																			<tr>
+																				<td height="20" style="cursor: hand"
+																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																					onmouseout="this.style.borderStyle='none'"><span
+																					class="STYLE3"><a
+																						href="<%=basePath%>servlet/UserAddServlet"
+																						target="mainFrame">查看部门员工信息</a> </span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
-							</table>
-						</td>
-					</tr>
-
+								</table>
+							</td>
+						</tr>
+					</c:if>
 					<!-- 部门管理结束 -->
 					<!-- 统计数据开始 -->
-
-					<tr>
-						<td>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="23"
-										background="<%=basePath%>resource/images/main_47.gif"
-										id="imgmenu4" class="menu_title"
-										onmouseover="this.className='menu_title2';"
-										onclick="showsubmenu(4)"
-										onmouseout="this.className='menu_title';" style="cursor: hand">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td width="18%">&nbsp;</td>
-												<td width="82%" class="STYLE1">统计数据</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td background="<%=basePath%>resource/images/main_51.gif"
-										id="submenu4" style="DISPLAY:">
-										<div class="sec_menu">
+					<c:if
+						test="${sessionScope.job == '销售员' || sessionScope.job == '网络咨询' || sessionScope.job == '销售主管' || sessionScope.job == '网络咨询主管' || sessionScope.job == '咨询师' || sessionScope.job == '咨询主管' }">
+						<tr>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23"
+											background="<%=basePath%>resource/images/main_47.gif"
+											id="imgmenu4" class="menu_title"
+											onmouseover="this.className='menu_title2';"
+											onclick="showsubmenu(4)"
+											onmouseout="this.className='menu_title';"
+											style="cursor: hand">
 											<table width="100%" border="0" cellspacing="0"
 												cellpadding="0">
 												<tr>
-													<td>
-														<table width="90%" border="0" align="center"
-															cellpadding="0" cellspacing="0">
-															<!-- 销售员/网络咨询/销售主管/网络咨询主管权限开始 -->
-															<tr>
-																<td width="16%" height="25">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td width="84%" height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"><a
-																					href="<%=basePath%>servlet/UserAddServlet"
-																					target="mainFrame">查看客户开发统计数据</a> </span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 销售员/网络咨询/销售主管/网络咨询主管权限结束 -->
-															<!-- 咨询师/咨询主管权限开始 -->
-															<tr>
-																<td height="23">
-																	<div align="center">
-																		<img src="<%=basePath%>resource/images/left.gif"
-																			width="10" height="10" />
-																	</div>
-																</td>
-																<td height="23">
-																	<table width="95%" border="0" cellspacing="0"
-																		cellpadding="0">
-																		<tr>
-																			<td height="20" style="cursor: hand"
-																				onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
-																				onmouseout="this.style.borderStyle='none'"><span
-																				class="STYLE3"> <a
-																					href="<%=basePath%>view/department/department_add.jsp"
-																					target="mainFrame">查看客户咨询统计数据</a>
-																			</span></td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-															<!-- 咨询师/咨询主管权限结束 -->
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="5"><img
-														src="<%=basePath%>resource/images/main_52.gif" width="151"
-														height="5" /></td>
+													<td width="18%">&nbsp;</td>
+													<td width="82%" class="STYLE1">统计数据</td>
 												</tr>
 											</table>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td background="<%=basePath%>resource/images/main_51.gif"
+											id="submenu4" style="DISPLAY:">
+											<div class="sec_menu">
+												<table width="100%" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td>
+															<table width="90%" border="0" align="center"
+																cellpadding="0" cellspacing="0">
+																<!-- 销售员/网络咨询/销售主管/网络咨询主管权限开始 -->
+																<c:if
+																	test="${sessionScope.job == '销售员' || sessionScope.job == '网络咨询' || sessionScope.job == '销售主管' || sessionScope.job == '网络咨询主管' }">
+																	<tr>
+																		<td width="16%" height="25">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td width="84%" height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"><a
+																							href="<%=basePath%>servlet/UserAddServlet"
+																							target="mainFrame">查看客户开发统计数据</a> </span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 销售员/网络咨询/销售主管/网络咨询主管权限结束 -->
+																<!-- 咨询师/咨询主管权限开始 -->
+																<c:if
+																	test="${sessionScope.job == '咨询师' ||sessionScope.job == '咨询主管' }">
+																	<tr>
+																		<td height="23">
+																			<div align="center">
+																				<img src="<%=basePath%>resource/images/left.gif"
+																					width="10" height="10" />
+																			</div>
+																		</td>
+																		<td height="23">
+																			<table width="95%" border="0" cellspacing="0"
+																				cellpadding="0">
+																				<tr>
+																					<td height="20" style="cursor: hand"
+																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
+																						onmouseout="this.style.borderStyle='none'"><span
+																						class="STYLE3"> <a
+																							href="<%=basePath%>view/department/department_add.jsp"
+																							target="mainFrame">查看客户咨询统计数据</a>
+																					</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</c:if>
+																<!-- 咨询师/咨询主管权限结束 -->
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="5"><img
+															src="<%=basePath%>resource/images/main_52.gif"
+															width="151" height="5" /></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
 
-							</table>
-						</td>
-					</tr>
+								</table>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 统计数据结束 -->
 				</table>
 			</td>
 

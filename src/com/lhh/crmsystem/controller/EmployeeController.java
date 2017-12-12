@@ -26,8 +26,12 @@ public class EmployeeController {
 		Employee employee = empService.login(username, pass);
 		HttpSession session = request.getSession();
 		session.setAttribute("employee", employee);
+		String job = null;// 获取工作职位
 		if (employee != null) {
-			System.out.println("该账号的职位为："+employee.getJobInfoId().getJob());
+			System.out.println("该账号的职位为：" + employee.getJobInfoId().getJob());
+			job = employee.getJobInfoId().getJob().trim();
+			session.setAttribute("job", job);
+			System.out.println("job:" + job);
 			if ("1".equals(employee.getWorkStatu())) {
 				return "/view/frame/main.jsp";
 			} else {

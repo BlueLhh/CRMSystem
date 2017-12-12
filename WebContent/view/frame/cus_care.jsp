@@ -11,10 +11,11 @@
 	href="<%=path%>/view/frame/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/view/frame/themes/icon.css">
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
 <script>
-	
 	$(function() {
 		var lastIndex;
 		$('#tt').datagrid({
@@ -70,23 +71,29 @@
 </script>
 </head>
 <body>
-	<h2>客户关怀表<a href="<%=path %>/view/frame/cus_care2.jsp" style="margin-left: 100px" target="_self">→</a></h2>
-	<a  href="<%=path %>/view/frame/care_add.jsp" target="_self"><span id='addcus'></span></a>
-	<table id="tt" data-options="iconCls:'icon-edit',singleSelect:true,idField:'careId',url:'<%=path %>/customer/allCare.do'">
+	<h2>
+		客户信息表<%-- <a href="<%=path%>/view/frame/cus_care2.jsp"
+			style="margin-left: 100px" target="_self">→</a> --%>
+	</h2>
+	<a href="<%=path%>/view/frame/care_add.jsp" target="_self"><span
+		id='addcus'></span></a>
+	<table id="tt"
+		data-options="iconCls:'icon-edit',singleSelect:true,idField:'careId',url:'<%=path%>/customer/allCare.do'">
 		<thead>
 			<tr>
-			<th data-options="field:'careId',width:60">关怀编号</th>
-				<th data-options="field:'customerId',width:60">客户编号</th>
-				<th data-options="field:'careTheme',width:80">关怀主题</th>
-				<th data-options="field:'careWay',width:100">关怀途径</th>
-				<th data-options="field:'careTime',width:150">关怀日期</th>
-				<th data-options="field:'careRemark',width:180">关怀备注</th>
-				<th data-options="field:'careNexttime',width:180">下次关怀时间</th>
-				<th data-options="field:'carePeople',width:180">关怀人物</th>
+				<th data-options="field:'careId',width:60">客户编号</th>
+				<th data-options="field:'customerId',width:60">客户姓名</th>
+				<th data-options="field:'careTheme',width:80">教育水平</th>
+				<th data-options="field:'careWay',width:100">手机号</th>
+				<th data-options="field:'careTime',width:150">QQ</th>
+				<th data-options="field:'careRemark',width:180">邮箱</th>
+				<th data-options="field:'careNexttime',width:180">客户状态</th>
+				<th data-options="field:'carePeople',width:180">创建日期</th>
+				<th data-options="field:'carePeople',width:180">邀请人姓名</th>
 			</tr>
 		</thead>
 	</table>
-	
+
 
 </body>
 </html>

@@ -86,15 +86,15 @@
 		<thead>
 			<tr>
 			<th data-options="field:'userId',width:60">员工编号</th>
-				<th data-options="field:'userName',width:60">员工姓名</th>
-				<th data-options="field:'userMobile',width:80">员工手机</th>
-				<th data-options="field:'userTel',width:100">员工固话</th>
-				<th data-options="field:'userAddress',width:150">员工住址</th>
-				<th data-options="field:'userNum',width:180">员工账号</th>
-				<th data-options="field:'userPw',width:180">员工密码</th>
-				<th data-options="field:'userEmail',width:180">员工邮箱</th>
-				<th data-options="field:'userAddtime',width:180">入职时间</th>
-				<th data-options="field:'isMarried',width:180">婚姻状态</th>
+				<th data-options="field:'userEmail',width:180">员工账号（邮箱）</th>
+				<th data-options="field:'userPw',width:100">账号密码</th>
+				<th data-options="field:'userNick',width:100">昵称</th>
+				<th data-options="field:'userName',width:100">真实姓名</th>
+				<th data-options="field:'userJob',width:100">职位</th>
+				<th data-options="field:'userDep',width:100">部门</th>
+				<th data-options="field:'userMobile',width:100">手机号码</th>
+				<th data-options="field:'userTel',width:100">固话号码</th>
+				<th data-options="field:'userStuts',width:100">在职状态</th>
 			</tr>
 		</thead>
 	</table>

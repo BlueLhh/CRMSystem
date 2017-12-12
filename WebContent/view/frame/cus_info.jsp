@@ -61,10 +61,10 @@ var conditions = [
 						 $.post("<%=path%>/customer/updateById.do",{
 								"customerId":rows[i].customerId,
 								"customerName":rows[i].customerName,
-								"customerSex":rows[i].customerSex,
+								"eduLevel":rows[i].eduLevel,
 								"customerMobile":rows[i].customerMobile,
 								"customerTel":rows[i].customerTel,
-								"customerCompany":rows[i].customerCompany
+								"empName":rows[i].empName
 							});
 					} 
 					$('#tt').datagrid('acceptChanges');
@@ -99,16 +99,11 @@ var conditions = [
 			<tr>
 				<th data-options="field:'ck',checkbox:true"></th>
 				<th data-options="field:'customerId',width:60">客户编号</th>
-				<!-- formatter:指定格式化的方法
-				options-valueField：参数
-				options-data：数据源 ，删掉也没事-->
-				<th data-options="field:'customerName',width:60, editor:'text'">客户名字</th>
-				<th data-options="field:'customerSex',width:60, editor:'text'">客户性别</th>
-				<th data-options="field:'customerMobile',width:80, editor:'text'">客户手机号</th>
-				<th data-options="field:'customerTel',width:100, editor:'text'">客户固话</th>
-				<th data-options="field:'birthDay',width:150, editor:'text'">客户生日</th>
-				<th data-options="field:'customerQq',width:180, editor:'text'">客户QQ</th>
-				<th data-options="field:'customerEmail',width:180, editor:'text'">客户邮箱</th>
+				<th data-options="field:'customerName',width:60, editor:'text'">客户姓名</th>
+				<th data-options="field:'eduLevel',width:100, editor:'text'">教育水平</th>
+				<th data-options="field:'customerMobile',width:100, editor:'text'">手机号</th>
+				<th data-options="field:'customerQq',width:100, editor:'text'">QQ</th>
+				<th data-options="field:'customerEmail',width:150, editor:'text'">邮箱</th>
 				<th data-options="field:'conditionId',width:120,formatter:conditionFormatter,editor:{
 							type:'combobox',
 							options:{
@@ -118,6 +113,8 @@ var conditions = [
 								required:true
 							}
 						}">客户状态</th>
+				<th data-options="field:'createDate',width:180, editor:'text'">创建日期</th>
+				<th data-options="field:'empName',width:180, editor:'text'">邀请人姓名</th>
 			</tr>
 		</thead>
 	</table>
