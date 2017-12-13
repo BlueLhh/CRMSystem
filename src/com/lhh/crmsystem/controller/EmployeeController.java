@@ -42,7 +42,6 @@ public class EmployeeController {
 		session.setAttribute("employee", employee);
 		String job = null;// 获取工作职位
 		if (employee != null) {
-			System.out.println("该账号的职位为：" + employee.getJobInfoId().getJob());
 			job = employee.getJobInfoId().getJob().trim();
 			session.setAttribute("job", job);
 			System.out.println("job:" + job);
@@ -120,14 +119,11 @@ public class EmployeeController {
 		JobInfo job = jobService.queryJobInfo(2);
 		Department dept = deptService.queryDepartment(1);
 		int id = (int) request.getSession().getAttribute("empId");
-		System.out.println("id+++++++++++++++" + id);
 		employee.setWorkStatu("1");
 		employee.setJobInfoId(job);
 		employee.setDepartmentId(dept);
 		employee.setId(id);
-		System.out.println("还没有更新之前：" + employee);
 		empService.updateEmployeeByObj(employee);
-		System.out.println("更改成功！");
 		return "/view/frame/admin_add.jsp";
 	}
 
