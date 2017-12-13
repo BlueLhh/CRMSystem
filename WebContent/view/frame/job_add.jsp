@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<form action="<%=basePath%>customer/cusAdd.do" name="form1"
+	<form action="<%=basePath%>jobInfo/addJob.do" name="form1"
 		onsubmit="return validator(this)" method="post">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
@@ -42,16 +42,15 @@
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">新增职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input style="width: 145px"
-					maxlength="50" type="text" name="customerEmail"
-					valid="required|isEmail" errmsg="Email不能为空|Email格式不对!"></td>
+					type="text" name="job"></td>
 			</tr>
 
 			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">所选部门：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><select name="conditionId"
+				<td bgcolor="#FFFDF0"><div align="center">职位部门：</div></td>
+				<td colspan="3" bgcolor="#FFFFFF"><select name="dept"
 					style="width: 145px">
-						<c:forEach var="condition" items="${data.conditions }">
-							<option value="${condition.conditionId }" label="">${condition.conditionName }</option>
+						<c:forEach var="department" items="${sessionScope.department }">
+							<option value="${department.id }" label="">${department.dname }</option>
 						</c:forEach>
 				</select></td>
 			</tr>

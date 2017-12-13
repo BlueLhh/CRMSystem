@@ -27,7 +27,7 @@
 			resultType="java.lang.Integer">
 			select T_JOBINFO_ID_SEQ.nextval from dual
 		</selectKey>
-		insert into T_JOBINFO values (#{job},#{departmentId.id})
+		insert into T_JOBINFO values (#{id},#{job},#{departmentId.id})
 	</insert>
 
 	<!-- 删除职位信息 -->

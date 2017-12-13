@@ -1,5 +1,8 @@
 package com.lhh.crmsystem.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +20,12 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	public Department queryDepartment(Integer id) {
 		Department dept = deptDao.queryById(id);
 		return dept;
+	}
+
+	@Override
+	public List<Department> queryAll() {
+		List<Department> list = new ArrayList<Department>();
+		list = deptDao.queryByAll();
+		return list;
 	}
 }

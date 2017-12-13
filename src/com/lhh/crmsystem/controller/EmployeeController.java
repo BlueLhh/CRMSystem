@@ -45,6 +45,11 @@ public class EmployeeController {
 			job = employee.getJobInfoId().getJob().trim();
 			session.setAttribute("job", job);
 			if ("1".equals(employee.getWorkStatu())) {
+				// 当登录的是超级管理员的时候，在登录的时候就加载部门和职位的信息
+				List<JobInfo> jobList = jobService.queryAll();
+				List<Department> deptList = deptService.queryAll();
+				session.setAttribute("jobInfo", jobList);
+				session.setAttribute("department", deptList);
 				return "/view/frame/main.jsp";
 			} else {
 				try {

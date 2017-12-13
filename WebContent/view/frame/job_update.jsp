@@ -42,8 +42,8 @@
 				<td bgcolor="#FFFDF0"><div align="center">职位名称：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><select name="conditionId"
 					style="width: 145px">
-						<c:forEach var="condition" items="${data.conditions }">
-							<option value="${condition.conditionId }" label="">${condition.conditionName }</option>
+						<c:forEach var="jobInfo" items="${sessionScope.jobInfo }">
+							<option value="${jobInfo.id }" label="">${jobInfo.job }</option>
 						</c:forEach>
 				</select></td>
 			</tr>
