@@ -101,7 +101,11 @@ public class EmployeeController {
 		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
 		response.getWriter().write(jsonString);
 	}
-
+	
+	// 查询全部管理员
+	
+	
+	
 	// 添加管理员
 	@RequestMapping("/adminAdd")
 	public String adminAdd(Employee employee) {
@@ -128,6 +132,22 @@ public class EmployeeController {
 		employee.setId(id);
 		empService.updateEmployeeByObj(employee);
 		return "/view/frame/admin_add.jsp";
+	}
+
+	// 删除员工
+	@RequestMapping("/deleteEmp")
+	public String deleteEmp(HttpServletRequest request) {
+		// 从页面上获取的员工ID
+		int empId = Integer.parseInt(request.getParameter("empId"));
+		empService.deleteEmployee(empId);
+		String op = request.getParameter("op");
+		if (op.equals("deleteAdmin")) {
+			System.out.println("删除的是管理员！");
+			return "/view/frame/admin_delete.jsp";
+		} else {
+			System.out.println("删除的是普通员工！");
+			return null;
+		}
 	}
 
 	// 条件查询员工

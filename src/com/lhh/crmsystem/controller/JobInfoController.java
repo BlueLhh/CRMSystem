@@ -25,9 +25,7 @@ public class JobInfoController {
 		int deptId = Integer.parseInt(request.getParameter("dept"));
 		Department dept = deptService.queryDepartment(deptId);
 		jobInfo.setDepartmentId(dept);
-		System.out.println(jobInfo);
 		jobService.insertJobInfo(jobInfo);
-		System.out.println("插入成功！");
 		return "/view/frame/job_add.jsp";
 	}
 }

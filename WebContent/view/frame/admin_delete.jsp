@@ -30,13 +30,44 @@
 	href="<%=path%>/view/frame/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/view/frame/themes/icon.css">
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
 <script>
-	
+	function btnClick() {
+		var input = $("#input").val();
+		$.post("employee/findEmployeeByAjax.do", {
+			name : input
+		}, function(data) {
+			var obj = JSON.parse(data);
+			$("#username").val(obj.username);
+			$("#pass").val(obj.pass);
+			$("#nickname").val(obj.nickname);
+			$("#realname").val(obj.realname);
+			$("#jobInfoId").val(obj.jobInfoId.job);
+			$("#departmentId").val(obj.departmentId.dname);
+			$("#phoneNo").val(obj.phoneNo);
+			$("#officeTel").val(obj.officeTel);
+			$("#workStatu").val(obj.workStatu);
+			var admin = '管理员';
+			var test = obj.jobInfoId.job;
+			if (test != admin) {
+				alert("该员工不是管理员，不可删除！")
+				$('#btn').attr('disabled', 'disabled');
+			} else {
+				$('#btn').removeAttr('disabled');
+			}
+		});
+	}
+
 	$(function() {
 		var lastIndex;
 		$('#tt').datagrid({
+			pagination : true,//开启分页工具栏
+			pageSize : 3,//默认选中的每页显示条数
+			pageList : [ 1, 2, 3, 5 ],//设置可选择的每页条数
+		
 			toolbar : [ {
 				text : 'append',
 				iconCls : 'icon-add',
@@ -102,59 +133,56 @@
 </head>
 
 <body>
-	<form action="<%=basePath%>customer/cusAdd.do" name="form1"
+	<form action="<%=basePath%>employee/deleteEmp.do" name="form1"
 		onsubmit="return validator(this)" method="post">
+		<input type="hidden" value="deleteAdmin" name="op">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
 			<tr class=editHeaderTr>
-				<td class=editHeaderTd colSpan=7>请输入管理员编号进行查询：<input
-					type="text" maxlength="10" style="width: 145px" valid="required"
-					errmsg="员工编号不能为空!" name="adminName">&nbsp;&nbsp;<input
-					type="button" name="submit" value="查询"></td>
+				<td class=editHeaderTd colSpan=7>请输入管理员编号或者姓名进行查询：<input
+					type="text" maxlength="10" style="width: 145px" name="empId" id="input">&nbsp;&nbsp;<input
+					type="button" onclick="btnClick()" value="查询"></td>
 			</tr>
 			<tr>
 
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" readonly="readonly"
-					valid="required" errmsg="客户姓名不能为空!" name="adminName"></td>
+					maxlength="50" style="width: 145px" readonly="readonly"
+					id="username"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerMsn"
-					readonly="readonly"></td>
+					maxlength="50" style="width: 145px" id="pass" readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">昵称：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerAddress"
+					maxlength="50" style="width: 145px" id="nickname"
 					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">真实姓名：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" name="customerChangeMan"
+					maxlength="50" style="width: 145px" id="realname"
 					readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" valid="required"
-					errmsg="创建人不能为空!" name="customerAddMan" readonly="readonly"></td>
+					maxlength="50" style="width: 145px" id="jobInfoId"
+					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="customerBlog"
+					maxlength="50" style="width: 145px" id="departmentId"
 					readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">手机号：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的手机号码!"
-					style="width: 145px" name="customerMobile" readonly="readonly"></td>
+					style="width: 145px" id="phoneNo" readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">办公电话：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="isQQ" errmsg="请输入正确的QQ号码!" style="width: 145px"
-					name="customerQq" readonly="readonly"></td>
+					style="width: 145px" id="officeTel" readonly="readonly"></td>
 			</tr>
 
 		</table>
@@ -163,7 +191,8 @@
 			align=center border=0>
 			<tr bgcolor="#ECF3FD">
 				<td width="25%"></td>
-				<td width="17%"><input type="submit" name="submit" value="确认删除"></td>
+				<td width="17%"><input type="submit" name="submit" id="btn"
+					value="确认删除"></td>
 				<td width="4%"><input type="button" name="button"
 					onClick="history.back() " value="返回"></td>
 				<td width="43%"></td>
