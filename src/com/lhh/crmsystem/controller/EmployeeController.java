@@ -101,11 +101,31 @@ public class EmployeeController {
 		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
 		response.getWriter().write(jsonString);
 	}
-	
+
 	// 查询全部管理员
-	
-	
-	
+	@SuppressWarnings("unused")
+	@RequestMapping("/allAdmin")
+	public void allAdmin(Employee employee, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		// 查询管理员
+		int jobId = 2;
+		JobInfo job = jobService.queryJobInfo(jobId);
+		employee.setJobInfoId(job);
+		// 当前页数
+		String currentPage = request.getParameter("page");
+		// 每页显示的条数
+		String pageSize = request.getParameter("rows");
+		List<Employee> empList = empService.queryManyByObj(employee);
+		for (Employee emp : empList) {
+			System.out.println(emp);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", 100);// 总条数
+		map.put("rows", empList);// 当前页的数据
+		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+		response.getWriter().write(jsonString);
+	}
+
 	// 添加管理员
 	@RequestMapping("/adminAdd")
 	public String adminAdd(Employee employee) {
@@ -154,7 +174,8 @@ public class EmployeeController {
 	@RequestMapping("/findEmployeeByAjax")
 	public void findEmployeeByAjax(Employee employee, String name, HttpServletRequest request,
 			HttpServletResponse resp) {
-		// 判断 如果是数值型则转成通过ID查询员工，否则通过真实姓名查询
+		// 判断 如果是数值型则转成通过ID查询员工，否则通过真实姓名查询\
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++" + name);
 		String data = name.trim();
 		try {
 			Integer valueOf = Integer.valueOf(data);
@@ -163,8 +184,8 @@ public class EmployeeController {
 			employee.setRealname(data);
 		}
 		Employee emp = new Employee();
-		emp = empService.queryEmployeeByObj(employee);
-
+		emp = empService.queryOneByObj(employee);
+		System.out.println(emp);
 		// 如果找不到员工 则弹出提示语 测试失败
 		if (emp == null) {
 			try {

@@ -61,7 +61,9 @@ public interface IEmployeeDao {
 	 * @param employee
 	 * @return
 	 */
-	public Employee queryByObj(Employee employee);
+	public Employee queryOneByObj(Employee employee);
+
+	public List<Employee> queryManyByObj(Employee employee);
 
 	/**
 	 * 查询员工的全部信息

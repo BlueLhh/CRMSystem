@@ -110,7 +110,45 @@
 	</select>
 
 	<!-- 动态查询 -->
-	<select id="queryByObj" resultMap="employeeMap" parameterType="Employee">
+	<select id="queryOneByObj" resultMap="employeeMap"
+		parameterType="Employee">
+		select * from T_EMPLOYEE
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test=" id != 0">
+				and ID = #{id}
+			</if>
+			<if test=" username != null ">
+				and USERNAME = #{username}
+			</if>
+			<if test=" pass != null ">
+				and PASS = #{pass}
+			</if>
+			<if test=" nickname != null ">
+				and NICKNAME = #{nickname}
+			</if>
+			<if test=" realname != null ">
+				and REALNAME = #{realname}
+			</if>
+			<if test=" jobInfoId != null ">
+				and JOBINFOID = #{jobInfoId.id}
+			</if>
+			<if test=" departmentId != null ">
+				and DEPARTMENTID = #{departmentId.id}
+			</if>
+			<if test=" phoneNo != null ">
+				and PHONENO = #{phoneNo}
+			</if>
+			<if test=" officeTel != null ">
+				and OFFICETEL = #{officeTel}
+			</if>
+			<if test=" workStatu != null ">
+				and WORKSTATU = #{workStatu}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="queryManyByObj" resultMap="employeeMap"
+		parameterType="Employee">
 		select * from T_EMPLOYEE
 		<trim prefix="where" prefixOverrides="and | or">
 			<if test=" id != 0">

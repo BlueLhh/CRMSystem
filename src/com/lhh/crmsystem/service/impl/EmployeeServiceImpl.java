@@ -65,9 +65,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee queryEmployeeByObj(Employee employee) {
+	public Employee queryOneByObj(Employee employee) {
 		Employee emp;
-		emp = empDao.queryByObj(employee);
+		emp = empDao.queryOneByObj(employee);
 		return emp;
+	}
+
+	@Override
+	public List<Employee> queryManyByObj(Employee employee) {
+		List<Employee> list = new ArrayList<Employee>();
+		list = empDao.queryManyByObj(employee);
+		return list;
 	}
 }
