@@ -39,14 +39,17 @@
 				<td class=editHeaderTd colSpan=7>修改职位权限</td>
 			</tr>
 			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">新增职位：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input style="width: 145px"
-					maxlength="50" type="text" name="customerEmail"
-					valid="required|isEmail" errmsg="Email不能为空|Email格式不对!"></td>
+				<td bgcolor="#FFFDF0"><div align="center">职位名称：</div></td>
+				<td colspan="3" bgcolor="#FFFFFF"><select name="conditionId"
+					style="width: 145px">
+						<c:forEach var="condition" items="${data.conditions }">
+							<option value="${condition.conditionId }" label="">${condition.conditionName }</option>
+						</c:forEach>
+				</select></td>
 			</tr>
 
 			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">所选部门：</div></td>
+				<td bgcolor="#FFFDF0"><div align="center">隶属权限：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><select name="conditionId"
 					style="width: 145px">
 						<c:forEach var="condition" items="${data.conditions }">

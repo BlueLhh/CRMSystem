@@ -80,7 +80,7 @@
 		});
 	}); */
 
-	function format1(value, row, index) {
+	function job(value, row, index) {
 		if (row.jobInfoId) {
 			return row.jobInfoId.job;
 		} else {
@@ -88,11 +88,19 @@
 		}
 	}
 
-	function format2(value, row, index) {
+	function dept(value, row, index) {
 		if (row.departmentId) {
 			return row.departmentId.dname;
 		} else {
 			return value;
+		}
+	}
+
+	function workStatu(value, row, index) {
+		if (row.workStatu == 1) {
+			return "在职";
+		} else {
+			return "离职或未激活";
 		}
 	}
 
@@ -181,12 +189,13 @@
 				<th data-options="field:'nickname',width:100,editor:'text'">昵称</th>
 				<th data-options="field:'realname',width:100,editor:'text'">真实姓名</th>
 				<th
-					data-options="field:'jobInfoId.job',width:100,editor:'text' ,formatter: format1">职位</th>
+					data-options="field:'jobInfoId.job',width:100,editor:'text' ,formatter: job">职位</th>
 				<th
-					data-options="field:'departmentId.dname',width:100,editor:'text' ,formatter: format2">部门</th>
+					data-options="field:'departmentId.dname',width:100,editor:'text' ,formatter: dept">部门</th>
 				<th data-options="field:'phoneNo',width:100,editor:'text'">手机号码</th>
 				<th data-options="field:'officeTel',width:100,editor:'text'">固话号码</th>
-				<th data-options="field:'workStatu',width:100,editor:'text'">在职状态</th>
+				<th
+					data-options="field:'workStatu',width:100,editor:'text' ,formatter: workStatu">在职状态</th>
 			</tr>
 		</thead>
 	</table>

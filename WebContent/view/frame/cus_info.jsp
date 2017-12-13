@@ -11,9 +11,29 @@
 	href="<%=path%>/view/frame/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/view/frame/themes/icon.css">
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
 <script>
+
+function formattime(val) {
+	var getTime = new Date(val);
+	var year=parseInt(getTime.getYear())+1900; 
+	var month=(parseInt(getTime.getMonth())+1); 
+	month=month>9?month:('0'+month); 
+	var date=parseInt(getTime.getDate()); 
+	date=date>9?date:('0'+date);
+	var hours = parseInt(getTime.getHours());
+	hours = hours > 9 ? hours : ('0' + hours);
+	var minutes = parseInt(getTime.getMinutes());
+	minutes = minutes > 9 ? minutes : ('0' + minutes);
+	var seconds = parseInt(getTime.getSeconds());
+	seconds = seconds > 9 ? seconds : ('0' + seconds);
+	var time=year+'-'+month+'-'+date+'  '+hours+':'+minutes+':'+seconds; 
+	return time;  
+}
+
 var conditions = [
     		    {conditionId:'0',name:'新增未上门'},
     		    {conditionId:'1',name:'新增已上门'},
@@ -31,6 +51,11 @@ var conditions = [
 	$(function() {
 		var lastIndex;
 		$('#tt').datagrid({
+			
+			pagination : true,//开启分页工具栏
+			pageSize : 3,//默认选中的每页显示条数
+			pageList : [ 1, 2, 3, 5 ],//设置可选择的每页条数
+
 			toolbar : [ {
 				text : '添加',
 				iconCls : 'icon-add',
@@ -58,29 +83,29 @@ var conditions = [
 					var rows = $('#tt').datagrid('getChanges');
 				//	var row=rows[0];
 					 for(var i=0;i<rows.length;i++){
-						 $.post("<%=path%>/customer/updateById.do",{
-								"customerId":rows[i].customerId,
-								"customerName":rows[i].customerName,
-								"eduLevel":rows[i].eduLevel,
-								"customerMobile":rows[i].customerMobile,
-								"customerTel":rows[i].customerTel,
-								"empName":rows[i].empName
-							});
-					} 
+						 $.post("<%=path%>/customer/updateById.do", {
+							"customerId" : rows[i].customerId,
+							"customerName" : rows[i].customerName,
+							"eduLevel" : rows[i].eduLevel,
+							"customerMobile" : rows[i].customerMobile,
+							"customerTel" : rows[i].customerTel,
+							"empName" : rows[i].empName
+						});
+					}
 					$('#tt').datagrid('acceptChanges');
 				}
-			},'-',{
+			}, '-', {
 				text : 'excel导出',
 				iconCls : 'icon-folder',
 				handler : function() {
 					$('#expInfo').click();
 				}
-			}],
-			onBeforeLoad:function(){
+			} ],
+			onBeforeLoad : function() {
 				$(this).datagrid('rejectChanges');
 			},
-			onClickRow:function(rowIndex){
-				if (lastIndex != rowIndex){
+			onClickRow : function(rowIndex) {
+				if (lastIndex != rowIndex) {
 					$('#tt').datagrid('endEdit', lastIndex);
 					$('#tt').datagrid('beginEdit', rowIndex);
 				}
@@ -92,19 +117,23 @@ var conditions = [
 </head>
 <body>
 	<h2>客户信息表</h2>
-	<a  href="<%=path %>/customer/cusEdit.do" target="_self"><span id='addcus'></span></a>
-	<a  href="<%=path%>/customer/exportCusInfo.do" target="_self"><span id='expInfo'></span></a>
-	<table id="tt" data-options="iconCls:'icon-edit',singleSelect:false,rownumbers:true,selectOnCheck:true,checkOnSelect:false,idField:'customerId',url:'<%=path %>/customer/allInfo.do?userId=${sessionScope.userInfo.userId }&roleId=${sessionScope.userInfo.roleId }',pagination:true">
+	<a href="<%=path%>/customer/cusEdit.do" target="_self"><span
+		id='addcus'></span></a>
+	<a href="<%=path%>/customer/exportCusInfo.do" target="_self"><span
+		id='expInfo'></span></a>
+	<table id="tt"
+		data-options="iconCls:'icon-edit',singleSelect:false,rownumbers:true,selectOnCheck:true,checkOnSelect:false,idField:'id',url:'<%=path%>/custom/allInfo.do'">
 		<thead>
 			<tr>
 				<th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'customerId',width:60">客户编号</th>
-				<th data-options="field:'customerName',width:60, editor:'text'">客户姓名</th>
-				<th data-options="field:'eduLevel',width:100, editor:'text'">教育水平</th>
-				<th data-options="field:'customerMobile',width:100, editor:'text'">手机号</th>
-				<th data-options="field:'customerQq',width:100, editor:'text'">QQ</th>
-				<th data-options="field:'customerEmail',width:150, editor:'text'">邮箱</th>
-				<th data-options="field:'conditionId',width:120,formatter:conditionFormatter,editor:{
+				<th data-options="field:'id',width:60">客户编号</th>
+				<th data-options="field:'name',width:60, editor:'text'">客户姓名</th>
+				<th data-options="field:'education',width:100, editor:'text'">教育水平</th>
+				<th data-options="field:'phoneNo',width:100, editor:'text'">手机号</th>
+				<th data-options="field:'qq',width:100, editor:'text'">QQ</th>
+				<th data-options="field:'email',width:150, editor:'text'">邮箱</th>
+				<th
+					data-options="field:'customStatu',width:120,formatter:conditionFormatter,editor:{
 							type:'combobox',
 							options:{
 								valueField:'conditionId',
@@ -113,8 +142,12 @@ var conditions = [
 								required:true
 							}
 						}">客户状态</th>
-				<th data-options="field:'createDate',width:180, editor:'text'">创建日期</th>
-				<th data-options="field:'empName',width:180, editor:'text'">邀请人姓名</th>
+				<th
+					data-options="field:'createDate',width:180, editor:'text', formatter:function(val)  
+                { 
+                    return formattime(val);  
+                }  ">创建日期</th>
+				<th data-options="field:'inviteName',width:180, editor:'text'">邀请人姓名</th>
 			</tr>
 		</thead>
 	</table>

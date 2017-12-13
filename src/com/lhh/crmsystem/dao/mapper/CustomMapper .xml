@@ -33,7 +33,7 @@
 			select T_CUSTOM_ID_SEQ.nextval from dual
 		</selectKey>
 		insert into T_CUSTOM values
-		(#{name},#{education},#{phoneNo},#{qq},#{email},#{customStatu},#{createDate},#{inviteName})
+		(#{id},#{name},#{education},#{phoneNo},#{qq},#{email},#{customStatu},#{createDate},#{inviteName})
 	</insert>
 
 	<!-- 删除一名客户 -->
@@ -76,12 +76,12 @@
 	<!-- 查询客户 -->
 	<select id="queryById" parameterType="int" resultMap="customMap">
 		select *
-		from T_COSTOM where id = #{id}
+		from T_CUSTOM where id = #{id}
 	</select>
 
 	<!-- 动态查询 -->
 	<select id="queryByObj" resultMap="customMap">
-		select * from T_COSTOM
+		select * from T_CUSTOM
 		<trim prefix="where" prefixOverrides="and | or">
 			<if test=" name != null ">
 				and NAME = #{name}
@@ -112,7 +112,7 @@
 
 	<!-- 查询全客户的信息 -->
 	<select id="queryByAll" resultMap="customMap">
-		select * from T_COSTOM
+		select * from T_CUSTOM
 	</select>
 
 </mapper>

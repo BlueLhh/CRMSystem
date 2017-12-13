@@ -44,7 +44,6 @@ public class EmployeeController {
 		if (employee != null) {
 			job = employee.getJobInfoId().getJob().trim();
 			session.setAttribute("job", job);
-			System.out.println("job:" + job);
 			if ("1".equals(employee.getWorkStatu())) {
 				return "/view/frame/main.jsp";
 			} else {
@@ -107,7 +106,6 @@ public class EmployeeController {
 		employee.setWorkStatu("1");
 		employee.setJobInfoId(job);
 		employee.setDepartmentId(dept);
-		System.out.println(employee);
 		empService.insertAdmin(employee);
 		return "/view/frame/admin_add.jsp";
 	}

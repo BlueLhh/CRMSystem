@@ -147,7 +147,7 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																					onmouseout="this.style.borderStyle='none'"><span
 																					class="STYLE3"><a
-																						href="<%=basePath%>/view/frame/cus_info.jsp"
+																						href="<%=basePath%>/view/frame/cust_add.jsp"
 																						target="mainFrame">添加客户信息</a> </span></td>
 																			</tr>
 																		</table>
