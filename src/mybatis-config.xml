@@ -6,5 +6,6 @@
 		<!--changes from the defaults for testing -->
 		<setting name="cacheEnabled" value="false" />
 		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
 	</settings>
 </configuration>   

@@ -253,7 +253,7 @@
 	<table>
 		<tr>
 			<td class=editHeaderTd colSpan=7>不记得编号？点击查询全部：&nbsp;&nbsp;<input
-				type="button" id="btn" onclick="btnClick()" value="查询全部管理员"></td>
+				type="button" id="btn" onclick="btnClick()" value="查询全部员工"></td>
 		</tr>
 	</table>
 

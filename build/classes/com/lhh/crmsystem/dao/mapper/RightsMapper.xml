@@ -15,7 +15,7 @@
 		<collection property="jobrList"
 			select="com.lhh.crmsystem.dao.IJobRightDao.queryById" ofType="JobRight"
 			javaType="java.util.List" column="ID" />
-		<collection property="pid"
+		<collection property="rigList"
 			select="com.lhh.crmsystem.dao.IRightsDao.queryById" ofType="Rights"
 			javaType="java.util.List" column="RID" />
 	</resultMap>

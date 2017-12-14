@@ -203,12 +203,15 @@ public class EmployeeController {
 		// 从页面上获取的员工ID
 		// int empId = Integer.parseInt(request.getParameter("empId"));
 		int id = (int) request.getSession().getAttribute("empId");
-		empService.deleteEmployee(id);
 		String op = request.getParameter("op");
 		if (op.equals("deleteAdmin")) {
+			empService.deleteEmployee(id);
 			System.out.println("删除的是管理员！");
 			return "/view/frame/admin_delete.jsp";
 		} else {
+			// 更新员工的状态
+			String stuts = "0";
+			empService.updateByIdAndStuts(stuts, id);
 			System.out.println("删除的是普通员工！");
 			return "/view/frame/emp_delete.jsp";
 		}

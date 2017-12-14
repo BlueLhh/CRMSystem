@@ -77,4 +77,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		list = empDao.queryManyByObj(employee);
 		return list;
 	}
+
+	@Override
+	public int updateByIdAndStuts(String stuts, Integer id) {
+		int rows = empDao.updateByIdAndStuts(stuts, id);
+		return rows;
+	}
 }

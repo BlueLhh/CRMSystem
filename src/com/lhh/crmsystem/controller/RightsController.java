@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lhh.crmsystem.entity.Rights;
 import com.lhh.crmsystem.service.IRightsService;
 
@@ -27,11 +26,6 @@ public class RightsController {
 	@SuppressWarnings("unused")
 	@RequestMapping("/allInfo")
 	public void allInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("------------------RightsController----------------");
-		System.out.println("------------------RightsController----------------");
-		System.out.println("------------------RightsController----------------");
-		System.out.println("------------------RightsController----------------");
-		System.out.println("------------------RightsController----------------");
 		// 当前页数
 		String currentPage = request.getParameter("page");
 		// 每页显示的条数
@@ -43,7 +37,9 @@ public class RightsController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", 100);// 总条数
 		map.put("rows", rigList);// 当前页的数据
-		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+
+		String jsonString = JSON.toJSONString(map);
+		System.out.println(jsonString);
 		response.getWriter().write(jsonString);
 	}
 

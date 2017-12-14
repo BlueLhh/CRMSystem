@@ -18,7 +18,6 @@ public class RightsServiceImpl implements IRightsService {
 
 	@Override
 	public List<Rights> queryAll() {
-		System.out.println(" +++++queryAll+++++进来了");
 		List<Rights> list = new ArrayList<Rights>();
 		list = rigDao.queryByAll();
 		return list;
@@ -26,7 +25,6 @@ public class RightsServiceImpl implements IRightsService {
 
 	@Override
 	public Rights queryById(Integer id) {
-
 		Rights rights;
 		rights = rigDao.queryById(id);
 		return rights;

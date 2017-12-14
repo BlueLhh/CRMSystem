@@ -56,6 +56,12 @@
 		USERNAME=#{username},PASS=#{pass},NICKNAME=#{nickname},REALNAME=#{realname},JOBINFOID=#{jobInfoId.id},DEPARTMENTID=#{departmentId.id},PHONENO=#{phoneNo},OFFICETEL=#{officeTel},WORKSTATU=#{workStatu}
 		where ID=#{id}
 	</update>
+	
+	<update id="updateByIdAndStuts" parameterType="Employee">
+		update T_EMPLOYEE set
+		WORKSTATU=#{0}
+		where ID=#{1}
+	</update>
 
 	<!-- 使用trim标签实现set标签的功能 -->
 	<update id="updateByObj" parameterType="Employee">

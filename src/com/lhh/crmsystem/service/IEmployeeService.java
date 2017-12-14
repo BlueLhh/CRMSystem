@@ -22,12 +22,14 @@ public interface IEmployeeService {
 
 	public int updateEmployee(Employee employee);
 
+	public int updateByIdAndStuts(String stuts, Integer id);
+
 	public int updateEmployeeByObj(Employee employee);
 
 	public Employee queryEmployee(Integer id);
 
 	public Employee queryOneByObj(Employee employee);
-	
+
 	public List<Employee> queryManyByObj(Employee employee);
 
 	public List<Employee> queryAll();

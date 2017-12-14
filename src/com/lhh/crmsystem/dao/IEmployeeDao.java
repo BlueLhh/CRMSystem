@@ -37,6 +37,8 @@ public interface IEmployeeDao {
 	 */
 	public int updateByObj(Employee employee);
 
+	public int updateByIdAndStuts(String stuts, Integer id);
+
 	/******* 查询 ********/
 	/**
 	 * 通过id查询返回一个员工信息
