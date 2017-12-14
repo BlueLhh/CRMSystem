@@ -34,9 +34,6 @@ public class CustomController {
 		// 每页显示的条数
 		String pageSize = request.getParameter("rows");
 		List<Custom> custList = custService.queryAll();
-		for (Custom custom : custList) {
-			System.out.println(custom);
-		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", 100);// 总条数
 		map.put("rows", custList);// 当前页的数据
@@ -49,9 +46,7 @@ public class CustomController {
 		// 获取当前的系统时间
 		Date date = new Date();
 		custom.setCreateDate(date);
-		System.out.println(custom);
 		custService.insertCustom(custom);
-		System.out.println("插入成功！");
 		return "/view/frame/cust_add.jsp";
 	}
 }

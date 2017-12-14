@@ -38,6 +38,12 @@ public interface IJobInfoDao {
 	 * @return
 	 */
 	public JobInfo queryById(Integer id);
+	
+	public JobInfo queryByJob(String job);
+
+	public List<JobInfo> queryByDept(Integer deptId);
+
+	public JobInfo queryByIdAndDeptId(Integer jobId, Integer deptId);
 
 	/**
 	 * 查询全部的信息

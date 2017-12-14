@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>添加管理员</title>
+<title>重置密码</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -45,6 +45,14 @@
 			$("#phoneNo").val(obj.phoneNo);
 			$("#officeTel").val(obj.officeTel);
 			$("#workStatu").val(obj.workStatu);
+			var dept = '技术部';
+			var test = obj.departmentId.dname;
+			if (test == dept) {
+				alert("该员工为管理员/超级管理员，当前权限不可重置！")
+				$('#btn').attr('disabled', 'disabled');
+			} else {
+				$('#btn').removeAttr('disabled');
+			}
 		});
 	}
 </script>
@@ -52,74 +60,13 @@
 </head>
 
 <body>
-	<form action="<%=basePath%>employee/adminAdd.do" name="form1"
-		onsubmit="return validator(this)" method="post">
-		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
-			align=center border=0>
-			<tr class=editHeaderTr>
-				<td class=editHeaderTd colSpan=7>请输入管理员信息（未存在该员工，此操作为新增一名位置为管理员的员工）</td>
-			</tr>
-			<tr>
-
-				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" valid="required"
-					errmsg="账号不能为空!" name="username"></td>
-				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="password"
-					maxlength="50" style="width: 145px" name="pass"></td>
-			</tr>
-
-			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">昵称：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" name="nickname"></td>
-				<td bgcolor="#FFFDF0"><div align="center">真实姓名：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" name="realname"></td>
-			</tr>
-
-			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" readonly="readonly" value="管理员"></td>
-				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="50" style="width: 145px" readonly="readonly" value="技术部"></td>
-			</tr>
-
-			<tr>
-				<td bgcolor="#FFFDF0"><div align="center">手机号：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的手机号码!"
-					style="width: 145px" name="phoneNo"></td>
-				<td bgcolor="#FFFDF0"><div align="center">办公电话：</div></td>
-				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					valid="regexp" regexp="^1[3|4|5|8][0-9]\d{8}$" errmsg="请输入正确的电话号码!"
-					style="width: 145px" name="officeTel"></td>
-			</tr>
-
-		</table>
-
-		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
-			align=center border=0>
-			<tr bgcolor="#ECF3FD">
-				<td width="25%"></td>
-				<td width="17%"><input type="submit" name="submit" value="添加"></td>
-				<td width="17%"><input type="reset" name="reset" value="重置"></td>
-				<td width="4%"><input type="button" name="button"
-					onClick="history.back() " value="返回"></td>
-				<td width="43%"></td>
-			</tr>
-		</table>
-	</form>
 	<form action="<%=basePath%>employee/updateEmp.do" name="form2"
 		onsubmit="return validator(this)" method="post">
-		<input type="hidden" value="updateAdmin" name="op">
+		<input type="hidden" value="resetPass" name="op">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
 			<tr class=editHeaderTr>
-				<td class=editHeaderTd colSpan=7>请输入员工的编号（已存在该员工，此操作为更改员工的部门以及职位信息）</td>
+				<td class=editHeaderTd colSpan=7>重置密码</td>
 			</tr>
 			<tr class=editHeaderTr>
 				<td class=editHeaderTd colSpan=7>请输入信息查询（真实姓名或者编号）：<input
@@ -177,9 +124,8 @@
 			align=center border=0>
 			<tr bgcolor="#ECF3FD">
 				<td width="25%"></td>
-				<td width="17%"><input type="submit" name="submit2"
-					value="确认添加"></td>
-				<td width="4%"><input type="button" name="button2"
+				<td width="17%"><input type="submit" name="submit" id="btn" value="确认修改"></td>
+				<td width="4%"><input type="button" name="button"
 					onClick="history.back() " value="返回"></td>
 				<td width="43%"></td>
 			</tr>

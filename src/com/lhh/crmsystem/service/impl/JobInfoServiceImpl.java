@@ -34,4 +34,25 @@ public class JobInfoServiceImpl implements IJobInfoService {
 		int rows = jobDao.insert(jobInfo);
 		return rows;
 	}
+
+	@Override
+	public JobInfo queryJobInfo(Integer jobId, Integer deptId) {
+		JobInfo info;
+		info = jobDao.queryByIdAndDeptId(jobId, deptId);
+		return info;
+	}
+
+	@Override
+	public List<JobInfo> queryByDept(Integer id) {
+		List<JobInfo> list = new ArrayList<JobInfo>();
+		list = jobDao.queryByDept(id);
+		return list;
+	}
+
+	@Override
+	public JobInfo queryByJob(String job) {
+		JobInfo info;
+		info = jobDao.queryByJob(job);
+		return info;
+	}
 }

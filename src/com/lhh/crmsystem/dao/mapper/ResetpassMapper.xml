@@ -14,7 +14,7 @@
 			resultType="java.lang.Integer">
 			select T_RESETPASS_ID_SEQ.nextval from dual
 		</selectKey>
-		insert into T_RESETPASS values (#{username},#{phoneNo})
+		insert into T_RESETPASS values (#{id},#{username},#{phoneNo})
 	</insert>
 
 	<!-- 删除数据 -->
@@ -39,7 +39,8 @@
 	<!-- 查询 -->
 	<select id="queryById" resultMap="resetpassMap">
 		select * from T_RESETPASS
-		where ID = #{id}
+		where
+		ID = #{id}
 	</select>
 
 	<!-- 查询全部 -->

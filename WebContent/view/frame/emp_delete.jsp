@@ -50,10 +50,10 @@
 			$("#phoneNo").val(obj.phoneNo);
 			$("#officeTel").val(obj.officeTel);
 			$("#workStatu").val(obj.workStatu);
-			var admin = '管理员';
-			var test = obj.jobInfoId.job;
-			if (test != admin) {
-				alert("该员工不是管理员，不可删除！")
+			var dept = '技术部';
+			var test = obj.departmentId.dname;
+			if (test == dept) {
+				alert("权限不足，无法删除！")
 				$('#btn').attr('disabled', 'disabled');
 			} else {
 				$('#btn').removeAttr('disabled');
@@ -185,11 +185,11 @@
 <body>
 	<form action="<%=basePath%>employee/deleteEmp.do" name="form1"
 		onsubmit="return validator(this)" method="post">
-		<input type="hidden" value="deleteAdmin" name="op">
+		<input type="hidden" value="deleteEmp" name="op">
 		<table class=editTable cellSpacing=1 cellPadding=0 width="100%"
 			align=center border=0>
 			<tr class=editHeaderTr>
-				<td class=editHeaderTd colSpan=7>请输入管理员编号或者姓名进行查询：<input
+				<td class=editHeaderTd colSpan=7>请输入员工编号或者姓名进行查询：<input
 					type="text" maxlength="10" style="width: 145px"
 					id="input">&nbsp;&nbsp;<input type="button"
 					onclick="btnFind()" value="查询"></td>
@@ -258,7 +258,7 @@
 	</table>
 
 	<table id="tt"
-		data-options="iconCls:'icon-edit',singleSelect:true,idField:'id',url:'<%=path%>/employee/allAdmin.do'">
+		data-options="iconCls:'icon-edit',singleSelect:true,idField:'id',url:'<%=path%>/employee/allInfo.do'">
 		<thead>
 			<tr>
 				<th data-options="field:'id',width:60,editor:'text'">员工编号</th>

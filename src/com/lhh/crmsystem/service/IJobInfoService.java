@@ -10,6 +10,12 @@ public interface IJobInfoService {
 
 	public JobInfo queryJobInfo(Integer id);
 
+	public JobInfo queryJobInfo(Integer jobId, Integer deptId);
+
+	public JobInfo queryByJob(String job);
+
 	public List<JobInfo> queryAll();
+
+	public List<JobInfo> queryByDept(Integer id);
 
 }

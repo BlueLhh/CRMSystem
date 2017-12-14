@@ -19,9 +19,11 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lhh.crmsystem.entity.Department;
 import com.lhh.crmsystem.entity.Employee;
 import com.lhh.crmsystem.entity.JobInfo;
+import com.lhh.crmsystem.entity.Resetpass;
 import com.lhh.crmsystem.service.IDepartmentService;
 import com.lhh.crmsystem.service.IEmployeeService;
 import com.lhh.crmsystem.service.IJobInfoService;
+import com.lhh.crmsystem.service.IResetpassService;
 
 @Controller
 @RequestMapping("/employee")
@@ -33,6 +35,8 @@ public class EmployeeController {
 	private IDepartmentService deptService;
 	@Autowired
 	private IJobInfoService jobService;
+	@Autowired
+	private IResetpassService resetService;
 
 	// 登录验证
 	@RequestMapping("/login")
@@ -44,12 +48,12 @@ public class EmployeeController {
 		if (employee != null) {
 			job = employee.getJobInfoId().getJob().trim();
 			session.setAttribute("job", job);
+			List<JobInfo> jobList = jobService.queryAll();
+			List<Department> deptList = deptService.queryAll();
+			session.setAttribute("jobInfo", jobList);
+			session.setAttribute("department", deptList);
 			if ("1".equals(employee.getWorkStatu())) {
 				// 当登录的是超级管理员的时候，在登录的时候就加载部门和职位的信息
-				List<JobInfo> jobList = jobService.queryAll();
-				List<Department> deptList = deptService.queryAll();
-				session.setAttribute("jobInfo", jobList);
-				session.setAttribute("department", deptList);
 				return "/view/frame/main.jsp";
 			} else {
 				try {
@@ -139,34 +143,74 @@ public class EmployeeController {
 		return "/view/frame/admin_add.jsp";
 	}
 
-	// 将一个员工更改为管理员
-	@RequestMapping("/updateToAdmin")
-	public String updateToAdmin(Employee employee, HttpServletRequest request) {
-
-		JobInfo job = jobService.queryJobInfo(2);
-		Department dept = deptService.queryDepartment(1);
-		int id = (int) request.getSession().getAttribute("empId");
-		employee.setWorkStatu("1");
-		employee.setJobInfoId(job);
+	// 新增一名普通用户
+	@RequestMapping("/empAdd")
+	public String empAdd(Employee employee, HttpServletRequest request) {
+		// 获取部门ID
+		int deptId = Integer.parseInt(request.getParameter("dept"));
+		// 获取职位ID
+		String jobName = request.getParameter("job").trim();
+		// 通过职位去查询一个职位对象
+		JobInfo jobInfo = jobService.queryByJob(jobName);
+		Department dept = deptService.queryDepartment(deptId);
+		employee.setJobInfoId(jobInfo);
 		employee.setDepartmentId(dept);
-		employee.setId(id);
-		empService.updateEmployeeByObj(employee);
-		return "/view/frame/admin_add.jsp";
+		employee.setWorkStatu("1");
+		empService.insertEmployee(employee);
+		return "/view/frame/emp_add.jsp";
+	}
+
+	// 将一个员工更改为管理员
+	@RequestMapping("/updateEmp")
+	public String updateEmp(Employee employee, HttpServletRequest request) {
+
+		String op = request.getParameter("op");
+		int id = (int) request.getSession().getAttribute("empId");
+		// 如果从页面传回来的值是 updateAdmin 则进行管理员的增加 resetPass 则是重置密码
+		if (op.equals("updateAdmin")) {
+			JobInfo job = jobService.queryJobInfo(2);
+			Department dept = deptService.queryDepartment(1);
+			employee.setWorkStatu("1");
+			employee.setJobInfoId(job);
+			employee.setDepartmentId(dept);
+			employee.setId(id);
+			empService.updateEmployeeByObj(employee);
+			return "/view/frame/admin_add.jsp";
+		} else {
+			// 重置面 op = resetPass //重置密码为初始密码为 123
+			String pass = employee.getPass();
+			System.out.println("pass++++++++++++++" + pass);
+			employee.setPass("123");
+			employee.setId(id);
+			empService.updateEmployeeByObj(employee);
+			System.out.println("重置密码成功！将密码记录在重置表格中！");
+
+			String username = employee.getUsername();
+			String phoneNo = employee.getPhoneNo();
+			System.out.println(username + "++++++++++++++" + phoneNo);
+			Resetpass resetpass = new Resetpass();
+			resetpass.setUsername(username);
+			resetpass.setPhoneNo(phoneNo);
+			resetService.insert(resetpass);
+			System.out.println("插入重置密码表成功！");
+			return "/view/frame/reset_pass.jsp";
+		}
 	}
 
 	// 删除员工
 	@RequestMapping("/deleteEmp")
 	public String deleteEmp(HttpServletRequest request) {
 		// 从页面上获取的员工ID
-		int empId = Integer.parseInt(request.getParameter("empId"));
-		empService.deleteEmployee(empId);
+		// int empId = Integer.parseInt(request.getParameter("empId"));
+		int id = (int) request.getSession().getAttribute("empId");
+		empService.deleteEmployee(id);
 		String op = request.getParameter("op");
 		if (op.equals("deleteAdmin")) {
 			System.out.println("删除的是管理员！");
 			return "/view/frame/admin_delete.jsp";
 		} else {
 			System.out.println("删除的是普通员工！");
-			return null;
+			return "/view/frame/emp_delete.jsp";
 		}
 	}
 
@@ -175,7 +219,6 @@ public class EmployeeController {
 	public void findEmployeeByAjax(Employee employee, String name, HttpServletRequest request,
 			HttpServletResponse resp) {
 		// 判断 如果是数值型则转成通过ID查询员工，否则通过真实姓名查询\
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++" + name);
 		String data = name.trim();
 		try {
 			Integer valueOf = Integer.valueOf(data);

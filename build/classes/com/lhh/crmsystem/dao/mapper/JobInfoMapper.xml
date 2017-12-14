@@ -55,6 +55,26 @@
 		ID = #{id}
 	</select>
 
+	<!-- 通过部门ID查询 -->
+	<select id="queryByDept" resultMap="jobInfoMap">
+		select * from T_JOBINFO where
+		DEPARTMENTID = #{departmentId.id}
+	</select>
+
+	<!-- 通过职位名称进行查询 -->
+	<select id="queryByJob" resultMap="jobInfoMap">
+		select * from T_JOBINFO where
+		JOB = #{0}
+	</select>
+
+	<select id="queryByIdAndDeptId" resultMap="jobInfoMap">
+		select * from
+		T_JOBINFO
+		where ID=#{0}
+		and
+		DEPARTMENTID=#{1}
+	</select>
+
 	<select id="queryByAll" resultMap="jobInfoMap">
 		select * from T_JOBINFO
 	</select>

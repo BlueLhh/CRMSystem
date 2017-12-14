@@ -521,7 +521,7 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"><a
-																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							href="<%=basePath%>view/frame/emp_add.jsp"
 																							target="mainFrame">添加普通用户账号</a> </span></td>
 																				</tr>
 																			</table>
@@ -542,7 +542,7 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"><a
-																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							href="<%=basePath%>view/frame/emp_delete.jsp"
 																							target="mainFrame">删除普通用户账号</a> </span></td>
 																				</tr>
 																			</table>
@@ -563,7 +563,7 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"><a
-																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							href="<%=basePath%>view/frame/reset_pass.jsp"
 																							target="mainFrame">重置用户密码</a> </span></td>
 																				</tr>
 																			</table>
@@ -726,7 +726,7 @@ document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																					onmouseout="this.style.borderStyle='none'"><span
 																					class="STYLE3"> <a
-																						href="<%=basePath%>view/frame/job_update.jsp"
+																						href="<%=basePath%>view/frame/rights_delete.jsp"
 																						target="mainFrame">删除权限</a>
 																				</span></td>
 																			</tr>

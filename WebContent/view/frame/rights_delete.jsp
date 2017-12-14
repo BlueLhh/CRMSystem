@@ -16,28 +16,20 @@
 <script type="text/javascript"
 	src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
 <script>
-	
-	function job(value, row, index) {
-		if (row.jobInfoId) {
-			return row.jobInfoId.job;
+
+	function pidName(value, row, index) {
+		if (row.pid) {
+			return row.pid.rightName;
 		} else {
 			return value;
 		}
 	}
 
-	function dept(value, row, index) {
-		if (row.departmentId) {
-			return row.departmentId.dname;
+	function rightType(value, row, index) {
+		if (row.rightType == 1) {
+			return "一级权限";
 		} else {
-			return value;
-		}
-	}
-
-	function workStatu(value, row, index) {
-		if (row.workStatu == 1) {
-			return "在职";
-		} else {
-			return "离职或未激活";
+			return "二级权限";
 		}
 	}
 
@@ -115,27 +107,19 @@
 </script>
 </head>
 <body>
-	<h2>员工信息表</h2>
+	<h2>删除权限</h2>
 	<table id="tt"
-		data-options="iconCls:'icon-edit',singleSelect:true,idField:'id',url:'<%=path%>/employee/allInfo.do'">
+		data-options="iconCls:'icon-edit',singleSelect:true,idField:'rid',url:'<%=path%>'/rights/allInfo.do">
 		<thead>
 			<tr>
-				<th data-options="field:'id',width:60,editor:'text'">员工编号</th>
-				<th data-options="field:'username',width:180,editor:'text'">员工账号（邮箱）</th>
-				<th data-options="field:'pass',width:100,editor:'text'">账号密码</th>
-				<th data-options="field:'nickname',width:100,editor:'text'">昵称</th>
-				<th data-options="field:'realname',width:100,editor:'text'">真实姓名</th>
+				<th data-options="field:'rid',width:60,editor:'text'">权限编号</th>
+				<th data-options="field:'rightName',width:180,editor:'text'">权限名称</th>
 				<th
-					data-options="field:'jobInfoId.job',width:100,editor:'text' ,formatter: job">职位</th>
-				<th
-					data-options="field:'departmentId.dname',width:100,editor:'text' ,formatter: dept">部门</th>
-				<th data-options="field:'phoneNo',width:100,editor:'text'">手机号码</th>
-				<th data-options="field:'officeTel',width:100,editor:'text'">固话号码</th>
-				<th
-					data-options="field:'workStatu',width:100,editor:'text' ,formatter: workStatu">在职状态</th>
+					data-options="field:'rightType',width:100,editor:'text',formatter:rightType">权限级别</th>
+				<th data-options="field:'url',width:100,editor:'text'">选项卡url值</th>
+				<th data-options="field:'pid.rightName',width:100,editor:'text'">类别名称</th>
 			</tr>
 		</thead>
 	</table>
-
 </body>
 </html>
