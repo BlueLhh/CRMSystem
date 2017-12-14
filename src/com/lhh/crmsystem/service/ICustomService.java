@@ -10,4 +10,8 @@ public interface ICustomService {
 
 	List<Custom> queryAll();
 
+	public int queryByCount();
+
+	public List<Custom> queryByPage(int total, int min, int max);
+
 }

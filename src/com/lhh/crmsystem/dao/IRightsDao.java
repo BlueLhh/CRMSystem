@@ -43,4 +43,22 @@ public interface IRightsDao {
 	 * @return
 	 */
 	public List<Rights> queryByAll();
+
+	/**
+	 * 获取总数据条数
+	 * 
+	 * @return
+	 */
+	public int queryByCount();
+
+	/**
+	 * 分页查询
+	 * 
+	 * @param count
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public List<Rights> queryByPage(int count, int page, int pageSize);
+
 }

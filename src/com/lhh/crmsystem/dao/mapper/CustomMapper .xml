@@ -115,4 +115,16 @@
 		select * from T_CUSTOM
 	</select>
 
+	<select id="queryByCount" resultType="java.lang.Integer">
+		select count(*) from
+		T_CUSTOM
+	</select>
+
+	<select id="queryByPage" resultMap="customMap">
+		select * from(select
+		T_CUSTOM.*,ROWNUM rn from T_CUSTOM where ROWNUM &lt;= #{0})
+		where rn
+		between #{1} and #{2}
+	</select>
+
 </mapper>

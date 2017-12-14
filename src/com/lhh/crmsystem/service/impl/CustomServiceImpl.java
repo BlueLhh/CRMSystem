@@ -32,4 +32,18 @@ public class CustomServiceImpl implements ICustomService {
 		return rows;
 	}
 
+	@Override
+	public int queryByCount() {
+		int rows = custDao.queryByCount();
+		return rows;
+	}
+
+	@Override
+	public List<Custom> queryByPage(int total, int min, int max) {
+
+		List<Custom> list = new ArrayList<Custom>();
+		list = custDao.queryByPage(total, min, max);
+		return list;
+	}
+
 }

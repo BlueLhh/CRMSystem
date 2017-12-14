@@ -66,4 +66,17 @@
 		select * from T_RIGHTS
 	</select>
 
+	<!-- 查询总数 -->
+	<select id="queryByCount" resultType="java.lang.Integer">
+		select count(*) from
+		T_RIGHTS
+	</select>
+
+	<select id="queryByPage" resultMap="rightsMap">
+		select * from (select
+		T_RIGHTS.*,ROWNUM rn from T_RIGHTS where ROWNUM &lt;= #{0})
+		where rn
+		between #{1} and #{2}
+	</select>
+
 </mapper>

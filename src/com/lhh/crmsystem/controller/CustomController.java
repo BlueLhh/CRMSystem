@@ -26,16 +26,21 @@ public class CustomController {
 	private ICustomService custService;
 
 	// 查询全部客户的信息
-	@SuppressWarnings("unused")
 	@RequestMapping("/allInfo")
 	public void AllInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 当前页数
 		String currentPage = request.getParameter("page");
 		// 每页显示的条数
 		String pageSize = request.getParameter("rows");
-		List<Custom> custList = custService.queryAll();
+
+		int max = Integer.valueOf(currentPage) * Integer.valueOf(pageSize);
+		int min = (Integer.valueOf(currentPage) - 1) * Integer.valueOf(pageSize) + 1;
+
+		int total = custService.queryByCount();
+
+		List<Custom> custList = custService.queryByPage(total, min, max);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("total", 100);// 总条数
+		map.put("total", total);// 总条数
 		map.put("rows", custList);// 当前页的数据
 		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
 		response.getWriter().write(jsonString);

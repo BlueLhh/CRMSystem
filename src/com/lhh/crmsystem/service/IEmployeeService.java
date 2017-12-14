@@ -33,4 +33,9 @@ public interface IEmployeeService {
 	public List<Employee> queryManyByObj(Employee employee);
 
 	public List<Employee> queryAll();
+
+	public int queryByCount();
+
+	public List<Employee> queryByPage(int total, int min, int max);
+
 }

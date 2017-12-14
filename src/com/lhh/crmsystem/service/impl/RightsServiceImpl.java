@@ -30,4 +30,18 @@ public class RightsServiceImpl implements IRightsService {
 		return rights;
 	}
 
+	@Override
+	public int queryByCount() {
+		int rows = rigDao.queryByCount();
+		System.out.println(rows);
+		return rows;
+	}
+
+	@Override
+	public List<Rights> queryByPage(int total, int min, int max) {
+		List<Rights> list = new ArrayList<Rights>();
+		list = rigDao.queryByPage(total, min, max);
+		return list;
+	}
+
 }

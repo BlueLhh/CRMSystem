@@ -83,4 +83,17 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		int rows = empDao.updateByIdAndStuts(stuts, id);
 		return rows;
 	}
+
+	@Override
+	public int queryByCount() {
+		int rows = empDao.queryByCount();
+		return rows;
+	}
+
+	@Override
+	public List<Employee> queryByPage(int total, int min, int max) {
+		List<Employee> list = new ArrayList<Employee>();
+		list = empDao.queryByPage(total, min, max);
+		return list;
+	}
 }

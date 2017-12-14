@@ -73,4 +73,21 @@ public interface IEmployeeDao {
 	 * @return
 	 */
 	public List<Employee> queryByAll();
+
+	/**
+	 * 获取总数据条数
+	 * 
+	 * @return
+	 */
+	public int queryByCount();
+
+	/**
+	 * 分页查询
+	 * 
+	 * @param count
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public List<Employee> queryByPage(int count, int page, int pageSize);
 }

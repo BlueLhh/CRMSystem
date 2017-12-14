@@ -53,4 +53,8 @@ public interface ICustomDao {
 	 */
 	public List<Custom> queryByAll();
 
+	public int queryByCount();
+
+	public List<Custom> queryByPage(int count, int page, int pageSize);
+
 }

@@ -56,9 +56,10 @@
 		USERNAME=#{username},PASS=#{pass},NICKNAME=#{nickname},REALNAME=#{realname},JOBINFOID=#{jobInfoId.id},DEPARTMENTID=#{departmentId.id},PHONENO=#{phoneNo},OFFICETEL=#{officeTel},WORKSTATU=#{workStatu}
 		where ID=#{id}
 	</update>
-	
+
 	<update id="updateByIdAndStuts" parameterType="Employee">
-		update T_EMPLOYEE set
+		update T_EMPLOYEE
+		set
 		WORKSTATU=#{0}
 		where ID=#{1}
 	</update>
@@ -152,7 +153,7 @@
 			</if>
 		</trim>
 	</select>
-	
+
 	<select id="queryManyByObj" resultMap="employeeMap"
 		parameterType="Employee">
 		select * from T_EMPLOYEE
@@ -194,6 +195,20 @@
 	<select id="queryByAll" resultMap="employeeMap">
 		select * from
 		T_EMPLOYEE
+	</select>
+
+	<!-- 查询总条数 -->
+	<select id="queryByCount" resultType="java.lang.Integer">
+		select count(*) from
+		T_EMPLOYEE
+	</select>
+
+	<select id="queryByPage" resultMap="employeeMap">
+		select * from (select
+		T_EMPLOYEE.*, ROWNUM rn from T_EMPLOYEE where ROWNUM &lt;= #{0})
+		where
+		rn
+		between #{1} and #{2}
 	</select>
 
 </mapper>

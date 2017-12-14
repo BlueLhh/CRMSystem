@@ -43,4 +43,9 @@ public interface ICustomInfoDao {
 	 * @return
 	 */
 	public List<CustomInfo> queryByAll();
+
+	/*public int queryByCount();
+
+	public List<CustomInfo> queryByPage(int count, int page, int pageSize);*/
+
 }
