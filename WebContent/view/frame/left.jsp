@@ -66,11 +66,10 @@ a {
 	text-decoration: none;
 	color: #033d61;
 }
-}
 </style>
 <script>
-var he=document.body.clientHeight-105;
-document.write("<div id=tt style=height:"+he+";overflow:hidden>")
+	var he=document.body.clientHeight-105;
+	document.write("<div id=tt style=height:"+he+";overflow:hidden>")
 </script>
 
 </head>

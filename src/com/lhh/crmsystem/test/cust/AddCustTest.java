@@ -17,6 +17,7 @@ import com.lhh.crmsystem.service.impl.CustomServiceImpl;
 public class AddCustTest {
 	private static SqlSession session;
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
 
 		Reader reader = Resources.getResourceAsReader("applicationContext.xml");

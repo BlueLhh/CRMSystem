@@ -16,7 +16,6 @@
 <script type="text/javascript"
 	src="<%=path%>/view/frame/js/jquery.easyui.min.js"></script>
 <script>
-
 	function pidName(value, row, index) {
 		if (row.pid) {
 			return row.pid.rightName;
@@ -109,7 +108,7 @@
 <body>
 	<h2>删除权限</h2>
 	<table id="tt"
-		data-options="iconCls:'icon-edit',singleSelect:true,idField:'rid',url:'<%=path%>'/rights/allInfo.do">
+		data-options="iconCls:'icon-edit',singleSelect:true,idField:'rid',url:'<%=path%>/rights/allInfo.do'">
 		<thead>
 			<tr>
 				<th data-options="field:'rid',width:60,editor:'text'">权限编号</th>
@@ -117,7 +116,8 @@
 				<th
 					data-options="field:'rightType',width:100,editor:'text',formatter:rightType">权限级别</th>
 				<th data-options="field:'url',width:100,editor:'text'">选项卡url值</th>
-				<th data-options="field:'pid.rightName',width:100,editor:'text'">类别名称</th>
+				<th
+					data-options="field:'pid.rightName',width:100,editor:'text',formatter:pidName">类别名称</th>
 			</tr>
 		</thead>
 	</table>
