@@ -1,6 +1,7 @@
 package com.lhh.crmsystem.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lhh.crmsystem.entity.Employee;
 
@@ -90,4 +91,21 @@ public interface IEmployeeDao {
 	 * @return
 	 */
 	public List<Employee> queryByPage(int count, int page, int pageSize);
+
+	/**
+	 * 查询员工总数，根据条件来查询
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	public int count(Map<String, Object> condition);
+
+	/**
+	 * 查询分页 condition中分别传入职位ID，当前页码，每页显示行数
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	public List<Employee> findByPage(Map<String, Object> condition);
+
 }

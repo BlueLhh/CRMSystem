@@ -113,7 +113,7 @@ public class EmployeeController {
 
 	// 查询全部管理员
 	@SuppressWarnings("unused")
-	@RequestMapping("/allAdmin")
+	// @RequestMapping("/allAdmin")
 	public void allAdmin(Employee employee, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		// 查询管理员
@@ -130,6 +130,72 @@ public class EmployeeController {
 		map.put("rows", empList);// 当前页的数据
 		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
 		response.getWriter().write(jsonString);
+	}
+
+	// 查询销售人员
+	// @RequestMapping("/sale")
+	public void sale(Employee employee, HttpServletResponse response) throws IOException {
+		// 查询销售员工
+		int jobId = 9;
+		JobInfo job = jobService.queryJobInfo(jobId);
+		employee.setJobInfoId(job);
+		List<Employee> empList = empService.queryManyByObj(employee);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", 100);// 总条数
+		map.put("rows", empList);// 当前页的数据
+		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+		response.getWriter().write(jsonString);
+	}
+
+	// 查询所有的咨询员工
+	// @RequestMapping("/consult")
+	public void consult(Employee employee, HttpServletResponse response) throws IOException {
+		int jobId = 3;
+		JobInfo job = jobService.queryJobInfo(jobId);
+		employee.setJobInfoId(job);
+		List<Employee> empList = empService.queryManyByObj(employee);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", 100);// 总条数
+		map.put("rows", empList);// 当前页的数据
+		String jsonString = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+		response.getWriter().write(jsonString);
+	}
+
+	// 条件查询
+	@RequestMapping("/findEmp")
+	public void tesfindEmp(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		// 获取从页面上穿过来的职位ID
+		Integer jobId = Integer.valueOf(request.getParameter("jobId"));
+		// 获取当前页数
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		// 每页显示的条数
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+
+		// 用Map保存条件
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// 判断当位置ID不为空的时候，就添加进map 不为空则按照职位ID查询相关员工
+		// 否则设置为0 即为查询全部的员工
+		if (jobId != null && !"".equals(jobId)) {
+			condition.put("jobId", jobId);
+		} else {
+			condition.put("jobId", 0);
+		}
+		// 把起始页和最后一页的条件存到map中
+		condition.put("start", (page - 1) * rows + 1);
+		condition.put("end", rows * page);
+
+		// 通过条件查询员工
+		List<Employee> empList = empService.page(condition);
+		// 通过条件查询满足该条件的员工总数
+		int count = empService.count(condition);
+		// 存入map通过JSON传到jsp页面
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", count);
+		map.put("rows", empList);
+
+		String empJSON = JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect);
+		response.getWriter().write(empJSON);
 	}
 
 	// 添加管理员
@@ -180,21 +246,16 @@ public class EmployeeController {
 			return "/view/frame/admin_add.jsp";
 		} else {
 			// 重置面 op = resetPass //重置密码为初始密码为 123
-			String pass = employee.getPass();
-			System.out.println("pass++++++++++++++" + pass);
 			employee.setPass("123");
 			employee.setId(id);
 			empService.updateEmployeeByObj(employee);
-			System.out.println("重置密码成功！将密码记录在重置表格中！");
 
 			String username = employee.getUsername();
 			String phoneNo = employee.getPhoneNo();
-			System.out.println(username + "++++++++++++++" + phoneNo);
 			Resetpass resetpass = new Resetpass();
 			resetpass.setUsername(username);
 			resetpass.setPhoneNo(phoneNo);
 			resetService.insert(resetpass);
-			System.out.println("插入重置密码表成功！");
 			return "/view/frame/reset_pass.jsp";
 		}
 	}

@@ -258,7 +258,7 @@
 	</table>
 
 	<table id="tt"
-		data-options="iconCls:'icon-edit',singleSelect:true,idField:'id',url:'<%=path%>/employee/allAdmin.do'">
+		data-options="iconCls:'icon-edit',singleSelect:true,idField:'id',url:'<%=path%>/employee/findEmp.do?jobId=2'">
 		<thead>
 			<tr>
 				<th data-options="field:'id',width:60,editor:'text'">员工编号</th>

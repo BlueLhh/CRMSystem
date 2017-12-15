@@ -2,6 +2,7 @@ package com.lhh.crmsystem.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,6 +95,21 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public List<Employee> queryByPage(int total, int min, int max) {
 		List<Employee> list = new ArrayList<Employee>();
 		list = empDao.queryByPage(total, min, max);
+		return list;
+	}
+
+	@Override
+	public int count(Map<String, Object> condition) {
+
+		int rows = empDao.count(condition);
+
+		return rows;
+	}
+
+	@Override
+	public List<Employee> page(Map<String, Object> condition) {
+		List<Employee> list = new ArrayList<Employee>();
+		list = empDao.findByPage(condition);
 		return list;
 	}
 }

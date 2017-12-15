@@ -54,4 +54,19 @@ public class CustomController {
 		custService.insertCustom(custom);
 		return "/view/frame/cust_add.jsp";
 	}
+
+	// 在表格上更新客户信息 通过ID进行更新
+	@RequestMapping("/updateById")
+	public String updateOneCustom(Custom custom, HttpServletRequest request) {
+		// 由于时间不能被封装进实体类中，需要分开获取，重新set进客户实体中
+		// 因为时间不能由String强转而成（时间戳），故需要将String强转成Long
+		Long time = Long.valueOf(request.getParameter("date"));
+		// 新建一个时间对象，将Long型强转
+		Date date = new Date(time);
+		// 将强转的时间set进客户
+		custom.setCreateDate(date);
+		// 更新客户信息
+		custService.updateOneCustom(custom);
+		return "/view/frame/cust_update.jsp";
+	}
 }

@@ -1,6 +1,7 @@
 package com.lhh.crmsystem.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lhh.crmsystem.entity.Employee;
 
@@ -37,5 +38,9 @@ public interface IEmployeeService {
 	public int queryByCount();
 
 	public List<Employee> queryByPage(int total, int min, int max);
+
+	public int count(Map<String, Object> condition);
+
+	public List<Employee> page(Map<String, Object> condition);
 
 }

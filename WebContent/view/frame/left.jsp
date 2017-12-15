@@ -167,7 +167,7 @@ a {
 																					onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																					onmouseout="this.style.borderStyle='none'"><span
 																					class="STYLE3"> <a
-																						href="<%=basePath%>/view/frame/cus_allocatasks.jsp"
+																						href="<%=basePath%>/view/frame/cust_update.jsp"
 																						target="mainFrame">修改客户信息</a>
 																				</span></td>
 																			</tr>
@@ -291,7 +291,7 @@ a {
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"> <a
-																							href="<%=basePath%>/view/frame/cus_info.jsp"
+																							href="<%=basePath%>/view/frame/cust_info.jsp"
 																							target="mainFrame">查询所有客户</a>
 																					</span></td>
 																				</tr>
@@ -317,7 +317,7 @@ a {
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"> <a
-																							href="<%=basePath%>/view/frame/house_type.jsp"
+																							href="<%=basePath%>/view/frame/cust_import.jsp"
 																							target="mainFrame">客户信息导入</a>
 																					</span></td>
 																				</tr>
@@ -339,7 +339,7 @@ a {
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"> <a
-																							href="<%=basePath%>/view/frame/department_info.jsp"
+																							href="<%=basePath%>/view/frame/cust_export.jsp"
 																							target="mainFrame">客户信息导出</a>
 																					</span></td>
 																				</tr>
@@ -587,7 +587,7 @@ a {
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"><a
-																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							href="<%=basePath%>view/frame/find_xs.jsp"
 																							target="mainFrame">查询所有销售员工</a> </span></td>
 																				</tr>
 																			</table>
@@ -608,7 +608,7 @@ a {
 																						onmouseover="this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#7bc4d3'; "
 																						onmouseout="this.style.borderStyle='none'"><span
 																						class="STYLE3"><a
-																							href="<%=basePath%>servlet/EmailQueryNoSendServlet"
+																							href="<%=basePath%>view/frame/find_zx.jsp"
 																							target="mainFrame">查询所有咨询员工</a> </span></td>
 																				</tr>
 																			</table>

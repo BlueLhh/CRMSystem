@@ -28,7 +28,7 @@ public interface ICustomDao {
 	 * @param custom
 	 * @return
 	 */
-	public Custom updateByObj(Custom custom);
+	public int updateByObj(Custom custom);
 
 	/**
 	 * 通过ID来查找一个客户信息

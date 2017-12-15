@@ -46,4 +46,10 @@ public class CustomServiceImpl implements ICustomService {
 		return list;
 	}
 
+	@Override
+	public int updateOneCustom(Custom custom) {
+		int rows = custDao.updateByObj(custom);
+		return rows;
+	}
+
 }

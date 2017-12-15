@@ -14,4 +14,6 @@ public interface ICustomService {
 
 	public List<Custom> queryByPage(int total, int min, int max);
 
+	public int updateOneCustom(Custom custom);
+
 }

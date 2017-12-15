@@ -45,6 +45,14 @@
 			$("#phoneNo").val(obj.phoneNo);
 			$("#officeTel").val(obj.officeTel);
 			$("#workStatu").val(obj.workStatu);
+			var jobName = '超级管理员';
+			var test = obj.jobInfoId.job;
+			if (test == jobName) {
+				alert("该员工是超级管理员，不可变更！")
+				$('#btn').attr('disabled', 'disabled');
+			} else {
+				$('#btn').removeAttr('disabled');
+			}
 		});
 	}
 </script>
@@ -63,7 +71,7 @@
 
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" valid="required"
+					maxlength="50" style="width: 145px" valid="required"
 					errmsg="账号不能为空!" name="username"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="password"
@@ -82,7 +90,7 @@
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" readonly="readonly" value="管理员"></td>
+					maxlength="50" style="width: 145px" readonly="readonly" value="管理员"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
 					maxlength="50" style="width: 145px" readonly="readonly" value="技术部"></td>
@@ -130,7 +138,7 @@
 
 				<td bgcolor="#FFFDF0"><div align="center">用户名（邮箱号）：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" readonly="readonly"
+					maxlength="50" style="width: 145px" readonly="readonly"
 					name="username" id="username"></td>
 				<td bgcolor="#FFFDF0"><div align="center">用户密码：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
@@ -152,7 +160,7 @@
 			<tr>
 				<td bgcolor="#FFFDF0"><div align="center">职位：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
-					maxlength="10" style="width: 145px" id="jobInfoId"
+					maxlength="50" style="width: 145px" id="jobInfoId"
 					readonly="readonly"></td>
 				<td bgcolor="#FFFDF0"><div align="center">部门：</div></td>
 				<td colspan="3" bgcolor="#FFFFFF"><input type="text"
@@ -177,7 +185,7 @@
 			align=center border=0>
 			<tr bgcolor="#ECF3FD">
 				<td width="25%"></td>
-				<td width="17%"><input type="submit" name="submit2"
+				<td width="17%"><input type="submit" id="btn" name="submit2"
 					value="确认添加"></td>
 				<td width="4%"><input type="button" name="button2"
 					onClick="history.back() " value="返回"></td>
