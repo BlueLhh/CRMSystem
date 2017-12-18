@@ -25,6 +25,30 @@
 			select="com.lhh.crmsystem.dao.ICustomInfoDao.queryById" ofType="CustomInfo"
 			javaType="java.util.List" column="ID" />
 	</resultMap>
+	
+	<resultMap type="HashMap" id="customHashMap">
+		<id column="ID" property="id" />
+		<!-- 普通属性 -->
+		<result column="NAME" property="name" />
+		<result column="EDUCATION" property="education" />
+		<result column="PHONENO" property="phoneNo" />
+		<result column="QQ" property="qq" />
+		<result column="EMAIL" property="email" />
+		<result column="CUSTOMSTATU" property="customStatu" />
+		<!-- 时间类型，在拿出的时候记得写上时间的类型 -->
+		<result column="CREATEDATE" property="createDate" />
+		<result column="INVITENAME" property="inviteName" />
+
+		<!-- 一对多关系，通过ID追踪所有关联，并放在集合中 -->
+		<collection property="conList"
+			select="com.lhh.crmsystem.dao.IConsultRecordDao.queryById" ofType="ConsultRecord"
+			javaType="java.util.List" column="ID" />
+
+		<!-- 一对多关系，通过ID查找跟踪信息 -->
+		<collection property="cusList"
+			select="com.lhh.crmsystem.dao.ICustomInfoDao.queryById" ofType="CustomInfo"
+			javaType="java.util.List" column="ID" />
+	</resultMap>
 
 	<!-- 新增一名客户 -->
 	<insert id="insert" parameterType="Custom">
@@ -125,6 +149,13 @@
 		T_CUSTOM.*,ROWNUM rn from T_CUSTOM where ROWNUM &lt;= #{0})
 		where rn
 		between #{1} and #{2}
+	</select>
+	
+	<select id="queryByMinAndMax" resultMap="customHashMap">
+		select * from(select
+		T_CUSTOM.*,ROWNUM rn from T_CUSTOM)
+		where rn
+		between #{0} and #{1}
 	</select>
 
 </mapper>

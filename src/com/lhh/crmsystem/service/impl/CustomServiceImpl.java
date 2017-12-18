@@ -2,6 +2,7 @@ package com.lhh.crmsystem.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,13 @@ public class CustomServiceImpl implements ICustomService {
 	public int updateOneCustom(Custom custom) {
 		int rows = custDao.updateByObj(custom);
 		return rows;
+	}
+
+	@Override
+	public List<Map<String,Object>> getCustomInfo(int min, int max) {
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		list = custDao.queryByMinAndMax(min, max);
+		return list;
 	}
 
 }

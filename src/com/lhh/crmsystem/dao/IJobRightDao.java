@@ -43,4 +43,5 @@ public interface IJobRightDao {
 	 * @return
 	 */
 	public List<JobRight> queryByAll();
+	
 }

@@ -1,6 +1,7 @@
 package com.lhh.crmsystem.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lhh.crmsystem.entity.Custom;
 
@@ -56,5 +57,7 @@ public interface ICustomDao {
 	public int queryByCount();
 
 	public List<Custom> queryByPage(int count, int page, int pageSize);
+
+	public List<Map<String,Object>> queryByMinAndMax(int min, int max);
 
 }

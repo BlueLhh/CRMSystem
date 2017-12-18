@@ -56,32 +56,12 @@ var conditions = [
 			pageSize : 3,//默认选中的每页显示条数
 			pageList : [ 1, 2, 3, 5 ],//设置可选择的每页条数
 
-			toolbar : [ <%-- {
-				text : '添加',
-				iconCls : 'icon-add',
-				handler : function() {
-					$("#addcus").click();
-				}
-			}, '-', {
-				text : '删除',
-				iconCls : 'icon-remove',
-				handler : function() {
-					var row = $('#tt').datagrid('getSelected');
-					if (row) {
-						$.post("<%=path%>/customer/deleteId.do",{
-						"id":row.customerId
-						});
-						var index = $('#tt').datagrid('getRowIndex', row);
-						$('#tt').datagrid('deleteRow', index);
-					}
-				}
-			}, '-',  --%>{
+			toolbar : [ {
 				text : '修改确认',
 				iconCls : 'icon-save',
 				handler : function() {
 						$('#tt').datagrid('endEdit', lastIndex);
 					var rows = $('#tt').datagrid('getChanges');
-				//	var row=rows[0];
 					 for(var i=0;i<rows.length;i++){
 						 $.post("<%=path%>/custom/updateById.do", {
 						 	"id" : rows[i].id,/* 编号不可更改 */
@@ -97,13 +77,7 @@ var conditions = [
 					}
 					$('#tt').datagrid('acceptChanges');
 				}
-			}/* , '-', {
-				text : 'excel导出',
-				iconCls : 'icon-folder',
-				handler : function() {
-					$('#expInfo').click();
-				}
-			}  */],
+			}],
 			onBeforeLoad : function() {
 				$(this).datagrid('rejectChanges');
 			},
@@ -134,7 +108,7 @@ var conditions = [
 		data-options="iconCls:'icon-edit',singleSelect:false,rownumbers:true,selectOnCheck:true,checkOnSelect:false,idField:'id',url:'<%=path%>/custom/allInfo.do'">
 		<thead>
 			<tr>
-				<th data-options="field:'ck',checkbox:true"></th>
+				<!-- <th data-options="field:'ck',checkbox:true"></th> -->
 				<th data-options="field:'id',width:60">客户编号</th>
 				<th data-options="field:'name',width:60, editor:'text'">客户姓名</th>
 				<th data-options="field:'education',width:100, editor:'text'">教育水平</th>
